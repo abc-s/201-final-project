@@ -1,5 +1,6 @@
 # User Stories
-## User
+## MVP
+### User
 1. As a user, I want the page to be simple and understandable so that I can plan my day.
 2. As a user, I want my tasks to be saved when I close my browser so that I can add to my lists over time.
 3. As a user, I want clear instructions so that I know how to use the website.
@@ -8,7 +9,7 @@
 6. As a user, I want to still see my completed tasks so that I can review them.
 7. As a user, I want to be able to add back completed tasks, so that I don’t have to retype them if I make a mistake.
 8. As a user, I want there to be an “About Us” page, so that I can learn who built this awesome site.
-## Developer
+### Developer
 1. As a developer, I want to use object oriented design with object constructors, so I can have DRY code (not repeat my code).
 2. As a developer, I want good code organization, so that it’s easy to read and understand my code and that functions are invoked in the right order.
 3. As a developer, I want to use useful comments in my code, so that it’s easy for my team and other developers to understand my code.
@@ -19,6 +20,11 @@
 8. As a developer, I want my project to be deployed with GitHub pages, so that anyone can view and use the site.
 9. As a developer, I want to store user’s data in a local storage so that it persists over browser sessions.
 10. As a developer, I want to use CSS transitions and animations so that it’s clear to the user when they successfully interact with the page and so it’s aesthetically pleasing.
-## Prospective Job-Seeker
+### Prospective Job-Seeker
 1. As a prospective job-seeker, I want to showcase what I’ve learned so far at Code Fellows, so that employers can see my usefulness. 
 2. As a prospective job-seeker, I want to have a project I’m proud of deployed online, so that I can add it to my portfolio and share it with employers. 
+## Stretch Goals
+1. As a user, I want to be able to change the colors and background image on my lists, so that I can customize each list to my preferences. 
+2. As a user, I want to be able to move my tasks position in the list by dragging with my mouse, so that I can re-order my to-dos by priority.
+3. As a user, I want a reference of pre-written common tasks, so that I don’t have to write out regular to-dos every time (like “feed the dog” or “get groceries”).
+4. As a developer, I want to use additional CSS animations to make list items visually move when they’re checked off to the “completed section”.
