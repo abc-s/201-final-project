@@ -40,8 +40,6 @@ List.prototype.renderTasks = function () {
   saveListsToLocalStorage();
 };
 
-
-
 // TASK CONSTRUCTOR FUNCTION
 function Task(userText) {
   this.userText = userText;

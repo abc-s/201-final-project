@@ -20,6 +20,7 @@ var completeUlElement = document.getElementById('complete-list');
 function renderOnPageLoad() {
 
   getListsFromLocalStorage();
+  renderListName();
   List.allLists[0].renderTasks();
 }
 
