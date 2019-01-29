@@ -26,6 +26,8 @@ List.prototype.addTask = function (userText) {
 
 // Renders tasks to the DOM
 List.prototype.renderTasks = function () {
+  incompleteUlElement.innerHTML = '';
+  completeUlElement.innerHTML = '';
   for (var i = 0; i < this.taskList.length; i++) {
     var newLi = this.taskList[i].createLi();
     if (this.taskList[i].checked === false) {

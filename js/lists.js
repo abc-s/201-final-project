@@ -22,16 +22,7 @@ function renderListName() {
 }
 
 // SORT AND RENDER TASKS
-function renderTasks() {
-  for (var i = 0; i < List.allLists[0].taskList.length; i++) {
-    if (!List.allLists[0].taskList[i].complete) {
-      // Change out fixed array index '[0]' and replace with different variable if we implement stretch goal of allowing multiple lists 
-      appendList(incompleteUlElement, List.allLists[0].taskList[i]);
-    } else {
-      appendList(completeUlElement, List.allLists[0].taskList[i]); // Change out '[0]' here too if we end up allowing multiple lists
-    }
-  }
-}
+
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
 function handleAddTask(event) {
