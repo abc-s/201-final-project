@@ -11,7 +11,7 @@ var addTaskButtonElement = document.getElementById('add-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
 
-
+// =====
 task.prototype.createLi = function() {
 // Create DOM Variables
 var listElement = document.createElement('li');
@@ -22,11 +22,17 @@ var buttonElement = document.createElement('button');
 // Add content & HTML attributes to variables
 inputElement.innerHTML = this.userText
 inputElement.type = 'checkbox';
+  if (this.checked = true) {
+    inputElement.complete = 'checked';
+    listElement.class = 'complete';
+  } else {
+    listElement.class = 'incomplete';
+  }
 buttonElement.innerHTML = 'X'
 labelElement.appendChild(inputElement);
 labelElement.appendChild(buttonElement);
 listElement.appendChild(labelElement);
-
+// ====
 // return listElement
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
