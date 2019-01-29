@@ -56,7 +56,7 @@ function Task(userText) {
   console.log('created new Task instance');
 }
 
-Task.prototype.createLi = function(){
+Task.prototype.createLi = function () {
   var liElement = document.createElement('li');
   var labelElement = document.createElement('label');
   var inputElement = document.createElement('input');
@@ -64,7 +64,7 @@ Task.prototype.createLi = function(){
 
   inputElement.innerHTML = this.userText;
   inputElement.type = 'checkbox';
-  if(this.checked === true){
+  if (this.checked === true) {
     inputElement.checked = 'checked';
     liElement.class = 'complete';
   } else {

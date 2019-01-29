@@ -11,30 +11,6 @@ var addTaskButtonElement = document.getElementById('add-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
 
-// =====
-task.prototype.createLi = function() {
-// Create DOM Variables
-var listElement = document.createElement('li');
-var labelElement = document.crateElement('label');
-var inputElement = document.createElement('input');
-var buttonElement = document.createElement('button');
-
-// Add content & HTML attributes to variables
-inputElement.innerHTML = this.userText
-inputElement.type = 'checkbox';
-  if (this.checked = true) {
-    inputElement.complete = 'checked';
-    listElement.class = 'complete';
-  } else {
-    listElement.class = 'incomplete';
-  }
-buttonElement.innerHTML = 'X'
-labelElement.appendChild(inputElement);
-labelElement.appendChild(buttonElement);
-listElement.appendChild(labelElement);
-// ====
-// return listElement
-}
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -59,8 +35,18 @@ function renderTasks() {
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
 function handleAddTask(event) {
-  var newTask = List.addTask(textInputElement.value); // Get text from input field 
-  appendList(incompleteUlElement, newTask);
+  event.preventDefault();
+  // console.log(event.target);
+
+  var userText = textInputElement.value;
+  console.log(userText);
+
+  List.allLists[0].addTask(userText);
+
+  List.allLists[0].renderTasks();
+
+  // var newTask = List.addTask(textInputElement.value); // Get text from input field 
+  // appendList(incompleteUlElement, newTask);
 }
 
 // ADD LIST ELEMENT TO DOM
@@ -70,8 +56,13 @@ function appendList(listElement, listItem) {
   listElement.appendChild(listItem);
 }
 
+// 'ADD TASK' BUTTON CLICK EVENT LISTENER
+addTaskButtonElement.addEventListener('click', handleAddTask);
+
 
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+new List('firstList', []);
