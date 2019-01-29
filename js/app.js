@@ -52,6 +52,7 @@ function handleNewList(event) {
   var listTitle = inputElement.value;
   console.log(listTitle);
   new List(listTitle, []);
+  window.location.href = 'lists.html';
   //redirect to lists.html
 }
 
