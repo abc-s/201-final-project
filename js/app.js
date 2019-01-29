@@ -52,9 +52,10 @@ List.prototype.removeListFromLocalStorage = function () {
 
 // GETS LIST FROM LOCAL STORAGE
 List.prototype.getListFromLocalStorage = function () {
-  var listTitle = this.listTitle;
-  var taskList = JSON.parse(localStorage.getItem(this.listTitle)).taskList;
-  new List(listTitle, taskList);
+  var storedList = JSON.parse(localStorage.getItem(this.listTitle));
+  if (storedList) {
+    this.taskList = storedList.taskList;
+  }
 };
 
 // TASK CONSTRUCTOR FUNCTION

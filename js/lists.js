@@ -16,6 +16,13 @@ var completeUlElement = document.getElementById('complete-list');
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Ordered with a stepdown approach. Higher level functions are on top and lower levels below.
 
+// RENDER ON PAGE LOAD
+function renderOnPageLoad() {
+  List.allLists[0].getListFromLocalStorage();
+  List.allLists[0].renderTasks();
+}
+
+
 // RENDER LIST TITLE
 function renderListName() {
   h1Element.textContent = List.allLists[0].listTitle;
@@ -56,4 +63,6 @@ addTaskButtonElement.addEventListener('click', handleAddTask);
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-new List('firstList', []);
+// new List('firstList', []);
+
+renderOnPageLoad();

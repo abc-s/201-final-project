@@ -20,8 +20,10 @@ function handleNewList(event) {
   event.preventDefault();
   var listTitle = inputElement.value;
   console.log(listTitle);
-  new List(listTitle, []);
-  // window.location.href = 'lists.html'; // redirect to lists.html
+  var newList = new List(listTitle, []);
+  newList.saveListToLocalStorage();
+
+  window.location.href = 'lists.html'; // redirect to lists.html
 }
 
 // BUTTON CLICK EVENT LISTENER
