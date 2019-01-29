@@ -5,10 +5,6 @@
 // DATA
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// DOM ACCESS VARIABLES
-// var buttonElement = document.getElementById('add-list');
-// var inputElement = document.getElementById('new-title');
-
 //OBJECT CONSTRUCTOR VARIABLES
 List.allLists = [];
 
@@ -20,12 +16,24 @@ function List(listTitle, taskList) {
   console.log('created new List instance');
 }
 
-// LIST 'ADD TASK' PROTOTYPE
+// LIST PROTOTYPE FUNCTIONS
+// Adds a Task to a List, pushes Task to array within the List
 List.prototype.addTask = function (userText) {
   var task = new Task(userText);
   this.taskList.push(task);
   console.log('ran .addTask()');
 };
+
+// Saves a List to local storage
+List.prototype.saveListToLocalStorage = function () {
+  localStorage.setItem(this.listTitle, JSON.stringify(this));
+};
+
+// Removes a List from local storage
+List.prototype.removeListFromLocalStorage = function () {
+  localStorage.removeItem(this.listTitle);
+};
+
 
 // TASK CONSTRUCTOR FUNCTION
 function Task(userText) {
