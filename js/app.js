@@ -36,27 +36,11 @@ List.prototype.renderTasks = function () {
       completeUlElement.appendChild(newLi);
     }
   }
-  this.removeListFromLocalStorage();
-  this.saveListToLocalStorage();
+  removeListsFromLocalStorage();
+  saveListsToLocalStorage();
 };
 
-// Saves a List to local storage
-List.prototype.saveListToLocalStorage = function () {
-  localStorage.setItem(this.listTitle, JSON.stringify(this));
-};
 
-// Removes a List from local storage
-List.prototype.removeListFromLocalStorage = function () {
-  localStorage.removeItem(this.listTitle);
-};
-
-// GETS LIST FROM LOCAL STORAGE
-List.prototype.getListFromLocalStorage = function () {
-  var storedList = JSON.parse(localStorage.getItem(this.listTitle));
-  if (storedList) {
-    this.taskList = storedList.taskList;
-  }
-};
 
 // TASK CONSTRUCTOR FUNCTION
 function Task(userText) {
@@ -101,18 +85,24 @@ function renderInitialPage() {
   // TODO: if there's local storage, redirect to lists.html
 }
 
-// // BUTTON CLICK EVENT HANDLER
-// function handleNewList(event) {
-//   console.log('event.target:', event.target);
-//   event.preventDefault();
-//   var listTitle = inputElement.value;
-//   console.log(listTitle);
-//   new List(listTitle, []);
-//   // window.location.href = 'lists.html'; // redirect to lists.html
-// }
+// Saves a List to local storage
+function saveListsToLocalStorage() {
+  localStorage.setItem('List.allLists', JSON.stringify(List.allLists));
+}
 
-// // BUTTON CLICK EVENT LISTENER
-// buttonElement.addEventListener('click', handleNewList);
+// Removes a List from local storage
+function removeListsFromLocalStorage() {
+  localStorage.removeItem('List.allLists');
+}
+
+// GETS LISTS FROM LOCAL STORAGE
+function getListsFromLocalStorage() {
+  console.log('ran getListFromLocalStorage');
+  var storedLists = JSON.parse(localStorage.getItem('List.allLists'));
+  if (storedLists) {
+    new List(storedLists[0].listTitle, storedLists[0].taskList);
+  }
+}
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS

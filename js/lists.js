@@ -18,7 +18,8 @@ var completeUlElement = document.getElementById('complete-list');
 
 // RENDER ON PAGE LOAD
 function renderOnPageLoad() {
-  List.allLists[0].getListFromLocalStorage();
+
+  getListsFromLocalStorage();
   List.allLists[0].renderTasks();
 }
 
