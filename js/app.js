@@ -36,6 +36,8 @@ List.prototype.renderTasks = function () {
       completeUlElement.appendChild(newLi);
     }
   }
+  this.removeListFromLocalStorage();
+  this.saveListToLocalStorage();
 };
 
 // Saves a List to local storage
