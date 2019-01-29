@@ -62,7 +62,8 @@ Task.prototype.createLi = function () {
   var inputElement = document.createElement('input');
   var buttonElement = document.createElement('button');
 
-  inputElement.innerHTML = this.userText;
+  console.log(this.userText);
+  labelElement.innerHTML = this.userText;
   inputElement.type = 'checkbox';
   if (this.checked === true) {
     inputElement.checked = 'checked';
