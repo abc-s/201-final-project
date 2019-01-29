@@ -1,19 +1,13 @@
 'use strict';
+// app.js is global and linked to each html file
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // DATA
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// DOM ACCESS VARIABLES - index.html
-var buttonElement = document.getElementById('add-list');
-var inputElement = document.getElementById('new-title');
-
-// DOM ACCESS VARIABLES - lists.html
-var h1Element = document.getElementById('list-name');
-var textInputElement = document.getElementById('text-input');
-var addTaskButtonElement = document.getElementById('add-task');
-var incompleteUlElement = document.getElementById('incomplete-list');
-var completeUlElement = document.getElementById('complete-list');
+// DOM ACCESS VARIABLES
+// var buttonElement = document.getElementById('add-list');
+// var inputElement = document.getElementById('new-title');
 
 //OBJECT CONSTRUCTOR VARIABLES
 List.allLists = [];
@@ -52,55 +46,21 @@ function renderInitialPage() {
   // TODO: if there's local storage, redirect to lists.html
 }
 
-// BUTTON CLICK EVENT HANDLER
-function handleNewList(event) {
-  console.log('event.target:', event.target);
-  event.preventDefault();
-  var listTitle = inputElement.value;
-  console.log(listTitle);
-  new List(listTitle, []);
-  // window.location.href = 'lists.html'; // redirect to lists.html
-}
+// // BUTTON CLICK EVENT HANDLER
+// function handleNewList(event) {
+//   console.log('event.target:', event.target);
+//   event.preventDefault();
+//   var listTitle = inputElement.value;
+//   console.log(listTitle);
+//   new List(listTitle, []);
+//   // window.location.href = 'lists.html'; // redirect to lists.html
+// }
 
-// BUTTON CLICK EVENT LISTENER
-buttonElement.addEventListener('click', handleNewList);
-
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// FUNCTIONS FOR LIST.HTML 
-
-// RENDER LIST TITLE
-function renderListName() {
-  h1Element.textContent = List.allLists[0].listTitle;
-}
-
-// SORT AND RENDER TASKS
-function renderTasks() {
-  for (var i = 0; i < List.allLists[0].taskList.length; i++) {
-    if (!List.allLists[0].taskList[i].complete) {
-      // Change out fixed array index '[0]' and replace with different variable if we implement stretch goal of allowing multiple lists 
-      appendList(incompleteUlElement, List.allLists[0].taskList[i]);
-    } else {
-      appendList(completeUlElement, List.allLists[0].taskList[i]); // Change out '[0]' here too if we end up allowing multiple lists
-    }
-  }
-}
-
-// EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
-function handleAddTask(event) {
-  var newTask = List.addTask(textInputElement.value); // Get text from input field 
-  appendList(incompleteUlElement, newTask);
-}
-
-// ADD LIST ELEMENT TO DOM
-function appendList(listElement, listItem) {
-  // TODO: CREATE 'LI' ELEMENT AND APPEND THAT TO DOM
-
-  listElement.appendChild(listItem);
-}
+// // BUTTON CLICK EVENT LISTENER
+// buttonElement.addEventListener('click', handleNewList);
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// renderInitialPage();
+renderInitialPage();
