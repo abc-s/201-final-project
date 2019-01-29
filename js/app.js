@@ -1,16 +1,9 @@
 'use strict';
+// app.js is global and linked to each html file
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // DATA
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// DOM ACCESS VARIABLES
-var buttonElement = document.getElementById('add-list');
-var inputElement = document.getElementById('new-title');
-var textInputElement = document.getElementById('text-input');
-var addTaskButtonElement = document.getElementById('add-task');
-var incompleteUlElement = document.getElementById('incomplete-list');
-var completeUlElement = document.getElementById('complete-list');
 
 //OBJECT CONSTRUCTOR VARIABLES
 List.allLists = [];
@@ -23,12 +16,36 @@ function List(listTitle, taskList) {
   console.log('created new List instance');
 }
 
-// LIST 'ADD TASK' PROTOTYPE
+// LIST PROTOTYPE FUNCTIONS
+// Adds a Task to a List, pushes Task to array within the List
 List.prototype.addTask = function (userText) {
   var task = new Task(userText);
   this.taskList.push(task);
   console.log('ran .addTask()');
 };
+
+// Renders tasks to the DOM
+List.prototype.renderTasks = function () {
+  for (var i = 0; i < this.taskList.length; i++) {
+    var newLi = this.taskList[i].createLi();
+    if (this.taskList[i].checked === false) {
+      incompleteUlElement.appendChild(newLi);
+    } else {
+      completeUlElement.appendChild(newLi);
+    }
+  }
+};
+
+// Saves a List to local storage
+List.prototype.saveListToLocalStorage = function () {
+  localStorage.setItem(this.listTitle, JSON.stringify(this));
+};
+
+// Removes a List from local storage
+List.prototype.removeListFromLocalStorage = function () {
+  localStorage.removeItem(this.listTitle);
+};
+
 
 // TASK CONSTRUCTOR FUNCTION
 function Task(userText) {
@@ -39,6 +56,30 @@ function Task(userText) {
   console.log('created new Task instance');
 }
 
+Task.prototype.createLi = function () {
+  var liElement = document.createElement('li');
+  var labelElement = document.createElement('label');
+  var inputElement = document.createElement('input');
+  var buttonElement = document.createElement('button');
+
+  console.log(this.userText);
+  labelElement.innerHTML = this.userText;
+  inputElement.type = 'checkbox';
+  if (this.checked === true) {
+    inputElement.checked = 'checked';
+    liElement.class = 'complete';
+  } else {
+    liElement.class = 'incomplete';
+  }
+
+  buttonElement.innerHTML = 'X';
+  labelElement.appendChild(inputElement);
+  labelElement.appendChild(buttonElement);
+  liElement.appendChild(labelElement);
+
+  return liElement;
+};
+
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -46,51 +87,21 @@ function Task(userText) {
 
 // RENDERS CORRECT PAGE
 function renderInitialPage() {
-  //if there's local storage, redirect to lists.html
+  // TODO: if there's local storage, redirect to lists.html
 }
 
-// BUTTON CLICK EVENT HANDLER
-function handleNewList(event) {
-  console.log('event.target:', event.target);
-  event.preventDefault();
-  var listTitle = inputElement.value;
-  console.log(listTitle);
-  new List(listTitle, []);
-  window.location.href = 'lists.html';
-  //redirect to lists.html
-}
+// // BUTTON CLICK EVENT HANDLER
+// function handleNewList(event) {
+//   console.log('event.target:', event.target);
+//   event.preventDefault();
+//   var listTitle = inputElement.value;
+//   console.log(listTitle);
+//   new List(listTitle, []);
+//   // window.location.href = 'lists.html'; // redirect to lists.html
+// }
 
-// BUTTON CLICK EVENT LISTENER
-buttonElement.addEventListener('click', handleNewList);
-
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// FUNCTIONS FOR LIST.HTML 
-
-// SORT AND RENDER TASKS
-function renderTasks() {
-    for (var i = 0; i < List.allLists[0].taskList.length; i++) {
-        if (!List.allLists[0].taskList[i].complete) {
-            // Change out fixed array index '[0]' and replace with different variable if we implement stretch goal of allowing multiple lists 
-            appendList(incompleteUlElement, List.allLists[0].taskList[i]);
-        } else {
-            appendList(completeUlElement, List.allLists[0].taskList[i]); // Change out '[0]' here too if we end up allowing multiple lists
-        }
-    }
-}
-
-// EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
-function handleAddTask(event) {
-    var newTask = List.addTask(textInputElement.value); // Get text from input field 
-    appendList(incompleteUlElement, newTask);
-}
-
-// ADD LIST ELEMENT TO DOM
-function appendList(listElement, listItem) {
-    // NEED TO CREATE 'LI' ELEMENT AND APPEND THAT TO DOM
-
-    listElement.appendChild(listItem);
-}
+// // BUTTON CLICK EVENT LISTENER
+// buttonElement.addEventListener('click', handleNewList);
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
