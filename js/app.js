@@ -46,7 +46,7 @@ function Task(userText) {
 
 // RENDERS CORRECT PAGE
 function renderInitialPage() {
-  //if there's local storage, redirect to lists.html
+  // TODO: if there's local storage, redirect to lists.html
 }
 
 // BUTTON CLICK EVENT HANDLER
@@ -56,8 +56,7 @@ function handleNewList(event) {
   var listTitle = inputElement.value;
   console.log(listTitle);
   new List(listTitle, []);
-  window.location.href = 'lists.html';
-  //redirect to lists.html
+  window.location.href = 'lists.html'; // redirect to lists.html
 }
 
 // BUTTON CLICK EVENT LISTENER
@@ -69,27 +68,27 @@ buttonElement.addEventListener('click', handleNewList);
 
 // SORT AND RENDER TASKS
 function renderTasks() {
-    for (var i = 0; i < List.allLists[0].taskList.length; i++) {
-        if (!List.allLists[0].taskList[i].complete) {
-            // Change out fixed array index '[0]' and replace with different variable if we implement stretch goal of allowing multiple lists 
-            appendList(incompleteUlElement, List.allLists[0].taskList[i]);
-        } else {
-            appendList(completeUlElement, List.allLists[0].taskList[i]); // Change out '[0]' here too if we end up allowing multiple lists
-        }
+  for (var i = 0; i < List.allLists[0].taskList.length; i++) {
+    if (!List.allLists[0].taskList[i].complete) {
+      // Change out fixed array index '[0]' and replace with different variable if we implement stretch goal of allowing multiple lists 
+      appendList(incompleteUlElement, List.allLists[0].taskList[i]);
+    } else {
+      appendList(completeUlElement, List.allLists[0].taskList[i]); // Change out '[0]' here too if we end up allowing multiple lists
     }
+  }
 }
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
 function handleAddTask(event) {
-    var newTask = List.addTask(textInputElement.value); // Get text from input field 
-    appendList(incompleteUlElement, newTask);
+  var newTask = List.addTask(textInputElement.value); // Get text from input field 
+  appendList(incompleteUlElement, newTask);
 }
 
 // ADD LIST ELEMENT TO DOM
 function appendList(listElement, listItem) {
-    // NEED TO CREATE 'LI' ELEMENT AND APPEND THAT TO DOM
+  // TODO: CREATE 'LI' ELEMENT AND APPEND THAT TO DOM
 
-    listElement.appendChild(listItem);
+  listElement.appendChild(listItem);
 }
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
