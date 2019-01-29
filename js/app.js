@@ -24,6 +24,18 @@ List.prototype.addTask = function (userText) {
   console.log('ran .addTask()');
 };
 
+// Renders tasks to the DOM
+List.prototype.renderTasks = function () {
+  for (var i = 0; i < this.taskList.length; i++) {
+    var newLi = this.taskList[i].createLi();
+    if (this.taskList[i].checked === false) {
+      incompleteUlElement.appendChild(newLi);
+    } else {
+      completeUlElement.appendChild(newLi);
+    }
+  }
+};
+
 // Saves a List to local storage
 List.prototype.saveListToLocalStorage = function () {
   localStorage.setItem(this.listTitle, JSON.stringify(this));
@@ -43,6 +55,29 @@ function Task(userText) {
   this.removed = false;
   console.log('created new Task instance');
 }
+
+Task.prototype.createLi = function(){
+  var liElement = document.createElement('li');
+  var labelElement = document.createElement('label');
+  var inputElement = document.createElement('input');
+  var buttonElement = document.createElement('button');
+
+  inputElement.innerHTML = this.userText;
+  inputElement.type = 'checkbox';
+  if(this.checked === true){
+    inputElement.checked = 'checked';
+    liElement.class = 'complete';
+  } else {
+    liElement.class = 'incomplete';
+  }
+
+  buttonElement.innerHTML = 'X';
+  labelElement.appendChild(inputElement);
+  labelElement.appendChild(buttonElement);
+  liElement.appendChild(labelElement);
+
+  return liElement;
+};
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
