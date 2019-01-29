@@ -4,9 +4,12 @@
 // DATA
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// DOM ACCESS VARIABLES
+// DOM ACCESS VARIABLES - index.html
 var buttonElement = document.getElementById('add-list');
 var inputElement = document.getElementById('new-title');
+
+// DOM ACCESS VARIABLES - lists.html
+var h1Element = document.getElementById('list-name');
 var textInputElement = document.getElementById('text-input');
 var addTaskButtonElement = document.getElementById('add-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
@@ -56,7 +59,7 @@ function handleNewList(event) {
   var listTitle = inputElement.value;
   console.log(listTitle);
   new List(listTitle, []);
-  window.location.href = 'lists.html'; // redirect to lists.html
+  // window.location.href = 'lists.html'; // redirect to lists.html
 }
 
 // BUTTON CLICK EVENT LISTENER
@@ -65,6 +68,11 @@ buttonElement.addEventListener('click', handleNewList);
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTIONS FOR LIST.HTML 
+
+// RENDER LIST TITLE
+function renderListName() {
+  h1Element.textContent = List.allLists[0].listTitle;
+}
 
 // SORT AND RENDER TASKS
 function renderTasks() {
@@ -95,4 +103,4 @@ function appendList(listElement, listItem) {
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-renderInitialPage();
+// renderInitialPage();
