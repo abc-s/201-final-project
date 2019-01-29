@@ -9,31 +9,31 @@ var buttonElement = document.getElementById('add-list');
 var inputElement = document.getElementById('new-title');
 
 //OBJECT CONSTRUCTOR VARIABLES
-var List.allLists = [];
+List.allLists = [];
 
 // LIST CONSTRUCTOR FUNCTION
 function List(listTitle, taskList) {
-    this.listTitle = listTitle;
-    this.taskList = taskList;
-    List.allLists.push(this);
-    console.log('created new List instance');
-};
+  this.listTitle = listTitle;
+  this.taskList = taskList;
+  List.allLists.push(this);
+  console.log('created new List instance');
+}
 
 // LIST 'ADD TASK' PROTOTYPE
-List.prototype.addTask(userText) {
-    var task = new Task(userText);
-    this.taskList.push(task);
-    console.log('ran .addTask()');
+List.prototype.addTask = function (userText) {
+  var task = new Task(userText);
+  this.taskList.push(task);
+  console.log('ran .addTask()');
 };
 
 // TASK CONSTRUCTOR FUNCTION
 function Task(userText) {
-    this.userText = userText;
-    this.checked = false;
-    this.editing = false;
-    this.removed = false;
-    console.log('created new Task instance');
-};
+  this.userText = userText;
+  this.checked = false;
+  this.editing = false;
+  this.removed = false;
+  console.log('created new Task instance');
+}
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
@@ -42,23 +42,21 @@ function Task(userText) {
 
 // RENDERS CORRECT PAGE
 function renderInitialPage() {
-    //if there's local storage, redirect to lists.html
+  //if there's local storage, redirect to lists.html
 }
 
 // BUTTON CLICK EVENT HANDLER
-function handleNewList(submit) {
-    console.log('event.target:', event.target);
-
-    event.preventDefault();
-
-    var listTitle = inputElement.value;
-    new List(listTitle, []);
-    //var listTitle = event target name?
-    //redirect to lists.html
+function handleNewList(event) {
+  console.log('event.target:', event.target);
+  event.preventDefault();
+  var listTitle = inputElement.value;
+  console.log(listTitle);
+  new List(listTitle, []);
+  //redirect to lists.html
 }
 
 // BUTTON CLICK EVENT LISTENER
-buttonElement.addEventListener('submit', handleNewList);
+buttonElement.addEventListener('click', handleNewList);
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
