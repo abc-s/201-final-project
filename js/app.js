@@ -7,6 +7,7 @@
 
 //GLOBAL VARIABLES
 List.allLists = []; // Array to store all lists
+var buttonElement;
 
 // LIST CONSTRUCTOR FUNCTION
 function List(listTitle, taskList) {
@@ -55,7 +56,7 @@ Task.prototype.createLi = function () {
   var liElement = document.createElement('li');
   var labelElement = document.createElement('label');
   var inputElement = document.createElement('input');
-  var buttonElement = document.createElement('button');
+  buttonElement = document.createElement('button');
   // Give each task's HTML elements content
   labelElement.innerHTML = this.userText;
   inputElement.type = 'checkbox';
