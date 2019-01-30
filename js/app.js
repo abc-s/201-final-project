@@ -7,7 +7,6 @@
 
 //GLOBAL VARIABLES
 List.allLists = []; // Array to store all lists
-var buttonElement;
 
 // LIST CONSTRUCTOR FUNCTION
 function List(listTitle, taskList) {
@@ -56,9 +55,10 @@ Task.prototype.createLi = function () {
   var liElement = document.createElement('li');
   var labelElement = document.createElement('label');
   var inputElement = document.createElement('input');
-  buttonElement = document.createElement('button');
+  var textInputElement = document.createElement('input');
+  var deleteButtonElement = document.createElement('button');
+
   // Give each task's HTML elements content
-  labelElement.innerHTML = this.userText;
   inputElement.type = 'checkbox';
   if (this.checked === true) {
     inputElement.checked = 'checked';
@@ -66,11 +66,18 @@ Task.prototype.createLi = function () {
   } else {
     liElement.class = 'incomplete';
   }
+
+  textInputElement.type = 'text';
+  textInputElement.value = this.userText;     //Puts user input into textInput element
+  textInputElement.readOnly = true;           //Makes textInput element uneditable                  
+  deleteButtonElement.innerHTML = '';               // no text inside the button       
+
   // Append the HTML elements in order
-  buttonElement.innerHTML = '';             // no text inside the button
-  labelElement.appendChild(inputElement);   // puts the input inside the label
-  labelElement.appendChild(buttonElement);  // puts the button inside the label
-  liElement.appendChild(labelElement);      // puts the label inside the li
+
+  labelElement.appendChild(inputElement);       // puts the input inside the label
+  labelElement.appendChild(textInputElement);   //puts the textInput inside the label
+  labelElement.appendChild(deleteButtonElement);      // puts the button inside the label
+  liElement.appendChild(labelElement);          // puts the label inside the li
 
   return liElement;
 };
