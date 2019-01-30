@@ -59,7 +59,10 @@ function handleRemoveTask(event) {
 
 // HANDLES CHECKING A TASK'S CHECKBOX
 function handleCheckboxChange(event) {
-  var taskName = event.target.parentNode.innerText;               // gets the text inside the label element (the input element's parent)
+  console.log(event.target);
+  console.log(event.target.parentNode.children[1].value);
+
+  var taskName = event.target.parentNode.children[1].value;       // gets the value of the label element's 2nd child (the input text element)
   var checked = event.target.checked;                             // gets checked status of the checkbox
   if (checked) {
     for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
