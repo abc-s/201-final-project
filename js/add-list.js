@@ -15,7 +15,6 @@ var inputElement = document.getElementById('new-title');
 
 // BUTTON CLICK EVENT HANDLER
 function handleNewList(event) {
-  // console.log('event.target:', event.target);
   event.preventDefault();
   var listTitle = inputElement.value;   // get what the user typed for 'list name'
   console.log(listTitle);
