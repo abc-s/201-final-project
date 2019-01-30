@@ -10,6 +10,7 @@ var textInputElement = document.getElementById('text-input');
 var addTaskButtonElement = document.getElementById('add-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
+var deleteTaskButtonElement = document.getElementById('delete-button');
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
@@ -38,8 +39,10 @@ function handleAddTask(event) {
 }
 
 // EVENT HANDLER FOR 'REMOVED TASK' BUTTON CLICK
-function handleRemoveTask(event) {
+function handleDeleteTask(event) {
+  console.log('deletetask event fired');
   event.preventDefault();
+  console.log(event.target);
   var taskName = event.target.parentNode.innerText;
   var removed = event.target.removed;
   if (removed) {
@@ -94,6 +97,8 @@ addTaskButtonElement.addEventListener('click', handleAddTask);
 incompleteUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'incomplete' ul
 completeUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'complete' ul
 
+//REMOVE TASK EVENT LISTENER
+incompleteUlElement.addEventListener('submit', handleDeleteTask);
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
