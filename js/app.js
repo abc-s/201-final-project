@@ -5,15 +5,14 @@
 // DATA
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-//OBJECT CONSTRUCTOR VARIABLES
-List.allLists = [];
+//GLOBAL VARIABLES
+List.allLists = []; // Array to store all lists
 
 // LIST CONSTRUCTOR FUNCTION
 function List(listTitle, taskList) {
   this.listTitle = listTitle;
   this.taskList = taskList;
   List.allLists.push(this);
-  console.log('created new List instance');
 }
 
 // LIST PROTOTYPE FUNCTIONS
@@ -21,31 +20,25 @@ function List(listTitle, taskList) {
 List.prototype.addTask = function (userText) {
   var task = new Task(userText);
   this.taskList.push(task);
-  console.log('ran .addTask()');
 };
 
 // Renders tasks to the DOM
 List.prototype.renderTasks = function () {
+  // Make lists empty on page
+  incompleteUlElement.innerHTML = '';
+  completeUlElement.innerHTML = '';
+  // Loop through the tasks
   for (var i = 0; i < this.taskList.length; i++) {
-    var newLi = this.taskList[i].createLi();
-    if (this.taskList[i].checked === false) {
+    var newLi = this.taskList[i].createLi();      // create a li for each task
+    if (this.taskList[i].checked === false) {     // if the task isn't checked, append the 'incomplete' ul
       incompleteUlElement.appendChild(newLi);
-    } else {
+    } else {                                      // if the task is checked, append the 'complete' ul
       completeUlElement.appendChild(newLi);
     }
   }
+  removeListsFromLocalStorage();  // clear the old list from local storage
+  saveListsToLocalStorage();      // add the new list to local storage
 };
-
-// Saves a List to local storage
-List.prototype.saveListToLocalStorage = function () {
-  localStorage.setItem(this.listTitle, JSON.stringify(this));
-};
-
-// Removes a List from local storage
-List.prototype.removeListFromLocalStorage = function () {
-  localStorage.removeItem(this.listTitle);
-};
-
 
 // TASK CONSTRUCTOR FUNCTION
 function Task(userText) {
@@ -53,16 +46,17 @@ function Task(userText) {
   this.checked = false;
   this.editing = false;
   this.removed = false;
-  console.log('created new Task instance');
+  // console.log('created new Task instance');
 }
 
+// TASK PROTOTYPE FUNCTION - creates HTML elements for each task
 Task.prototype.createLi = function () {
+  // Create HTML elements for each task
   var liElement = document.createElement('li');
   var labelElement = document.createElement('label');
   var inputElement = document.createElement('input');
   var buttonElement = document.createElement('button');
-
-  console.log(this.userText);
+  // Give each task's HTML elements content
   labelElement.innerHTML = this.userText;
   inputElement.type = 'checkbox';
   if (this.checked === true) {
@@ -71,11 +65,11 @@ Task.prototype.createLi = function () {
   } else {
     liElement.class = 'incomplete';
   }
-
-  buttonElement.innerHTML = 'X';
-  labelElement.appendChild(inputElement);
-  labelElement.appendChild(buttonElement);
-  liElement.appendChild(labelElement);
+  // Append the HTML elements in order
+  buttonElement.innerHTML = '';             // no text inside the button
+  labelElement.appendChild(inputElement);   // puts the input inside the label
+  labelElement.appendChild(buttonElement);  // puts the button inside the label
+  liElement.appendChild(labelElement);      // puts the label inside the li
 
   return liElement;
 };
@@ -90,21 +84,26 @@ function renderInitialPage() {
   // TODO: if there's local storage, redirect to lists.html
 }
 
-// // BUTTON CLICK EVENT HANDLER
-// function handleNewList(event) {
-//   console.log('event.target:', event.target);
-//   event.preventDefault();
-//   var listTitle = inputElement.value;
-//   console.log(listTitle);
-//   new List(listTitle, []);
-//   // window.location.href = 'lists.html'; // redirect to lists.html
-// }
+// Saves all Lists to local storage
+function saveListsToLocalStorage() {
+  localStorage.setItem('List.allLists', JSON.stringify(List.allLists));
+}
 
-// // BUTTON CLICK EVENT LISTENER
-// buttonElement.addEventListener('click', handleNewList);
+// Removes all Lists from local storage
+function removeListsFromLocalStorage() {
+  localStorage.removeItem('List.allLists');
+}
+
+// Retrieves all Lists from local storage
+function getListsFromLocalStorage() {
+  var storedLists = JSON.parse(localStorage.getItem('List.allLists'));
+  if (storedLists) {
+    new List(storedLists[0].listTitle, storedLists[0].taskList);
+  }
+}
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-renderInitialPage();
+// renderInitialPage(); // TODO: build this function
