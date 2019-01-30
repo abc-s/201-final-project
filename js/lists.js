@@ -68,6 +68,9 @@ function handleCheckboxChange(event) {
     for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
       if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
         List.allLists[0].taskList[i].checked = true;              // Changes the task object's property to 'checked'
+        // Repositions the task to the end of the taskList array
+        List.allLists[0].taskList.push(List.allLists[0].taskList[i]); // Adds the task to the end of the allTasks array
+        List.allLists[0].taskList.splice(i, 1);                       // Removes the task from it's original position
         console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].checked);
         break;
       }
@@ -76,6 +79,9 @@ function handleCheckboxChange(event) {
     for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
       if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
         List.allLists[0].taskList[i].checked = false;             // Changes the task object's property to 'un-checked'
+        // Repositions the task to the end of the taskList array
+        List.allLists[0].taskList.push(List.allLists[0].taskList[i]); // Adds the task to the end of the allTasks array
+        List.allLists[0].taskList.splice(i, 1);                       // Removes the task from it's original position
         console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].checked);
         break;
       }
