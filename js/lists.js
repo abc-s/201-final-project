@@ -8,7 +8,6 @@
 var h1Element = document.getElementById('list-name');
 var textInputElement = document.getElementById('text-input');
 var addTaskButtonElement = document.getElementById('add-task');
-var removeTaskButtonElement = document.getElementById('remove-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
 
@@ -90,7 +89,6 @@ function handleCheckboxChange(event) {
 
 // 'ADD TASK' BUTTON CLICK EVENT LISTENER
 addTaskButtonElement.addEventListener('click', handleAddTask);
-removeTaskButtonElement.addEventListener('click', handleRemoveTask);
 
 // 'CHECK TASK' EVENT LISTENERS
 incompleteUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'incomplete' ul
