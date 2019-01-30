@@ -19,7 +19,9 @@ var completeUlElement = document.getElementById('complete-list');
 // RENDER ON PAGE LOAD
 function renderOnPageLoad() {
   getListsFromLocalStorage();     // declared in app.js
+
   renderListName();               // declared below
+
   List.allLists[0].renderTasks(); // invokes list method that clears page and renders all tasks as li's
 }
 
@@ -42,7 +44,6 @@ function handleRemoveTask(event) {
   var taskName = event.target.parentNode.innerText;
   var removed = event.target.removed;
   if (removed) {
-    console.log("clicked removed");
     for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
       if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
         List.allLists[0].taskList[i].removed = true;              // Changes the task object's property to 'checked'
@@ -59,34 +60,31 @@ function handleRemoveTask(event) {
 
 // HANDLES CHECKING A TASK'S CHECKBOX
 function handleCheckboxChange(event) {
-  console.log(event.target);
-  console.log(event.target.parentNode.children[1].value);
-
-  var taskName = event.target.parentNode.children[1].value;       // gets the value of the label element's 2nd child (the input text element)
-  var checked = event.target.checked;                             // gets checked status of the checkbox
+  var taskName = event.target.parentNode.children[1].value;           // gets the value of the label element's 2nd child (the input text element)
+  var checked = event.target.checked;                                 // gets checked status of the checkbox
   if (checked) {
-    for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
-      if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
-        List.allLists[0].taskList[i].checked = true;              // Changes the task object's property to 'checked'
+    for (var i = 0; i < List.allLists[0].taskList.length; i++) {      // Loops through all the tasks
+      if (List.allLists[0].taskList[i].userText === taskName) {       // Finds the targeted task
+        List.allLists[0].taskList[i].checked = true;                  // Changes the task object's property to 'checked'
         // Repositions the task to the end of the taskList array
         List.allLists[0].taskList.push(List.allLists[0].taskList[i]); // Adds the task to the end of the allTasks array
         List.allLists[0].taskList.splice(i, 1);                       // Removes the task from it's original position
-        console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].checked);
         break;
       }
     }
   } else {
-    for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
-      if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
-        List.allLists[0].taskList[i].checked = false;             // Changes the task object's property to 'un-checked'
+    for (var i = 0; i < List.allLists[0].taskList.length; i++) {      // Loops through all the tasks
+      if (List.allLists[0].taskList[i].userText === taskName) {       // Finds the targeted task
+        List.allLists[0].taskList[i].checked = false;                 // Changes the task object's property to 'un-checked'
         // Repositions the task to the end of the taskList array
         List.allLists[0].taskList.push(List.allLists[0].taskList[i]); // Adds the task to the end of the allTasks array
         List.allLists[0].taskList.splice(i, 1);                       // Removes the task from it's original position
-        console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].checked);
         break;
       }
     }
   }
+  removeListsFromLocalStorage();
+  saveListsToLocalStorage();
   renderOnPageLoad();
 }
 

@@ -18,7 +18,7 @@ function List(listTitle, taskList) {
 // LIST PROTOTYPE FUNCTIONS
 // Adds a Task to a List, pushes Task to array within the List
 List.prototype.addTask = function (userText) {
-  var task = new Task(userText);
+  var task = new Task(userText, false, false, false);
   this.taskList.push(task);
 };
 
@@ -27,9 +27,10 @@ List.prototype.renderTasks = function () {
   // Make lists empty on page
   incompleteUlElement.innerHTML = '';
   completeUlElement.innerHTML = '';
-  // Loop through the tasks
+  // Loop through the tasks of a list
   for (var i = 0; i < this.taskList.length; i++) {
-    var newLi = this.taskList[i].createLi();      // create a li for each task
+    console.log(this.taskList[i]);
+    var newLi = this.taskList[i].createLi();      // create a li for each task 
     if (this.taskList[i].checked === false) {     // if the task isn't checked, append the 'incomplete' ul
       incompleteUlElement.appendChild(newLi);
     } else {                                      // if the task is checked, append the 'complete' ul
@@ -41,11 +42,11 @@ List.prototype.renderTasks = function () {
 };
 
 // TASK CONSTRUCTOR FUNCTION
-function Task(userText) {
+function Task(userText, checked, editing, removed) {
   this.userText = userText;
-  this.checked = false;
-  this.editing = false;
-  this.removed = false;
+  this.checked = checked;
+  this.editing = editing;
+  this.removed = removed;
   // console.log('created new Task instance');
 }
 
@@ -57,7 +58,6 @@ Task.prototype.createLi = function () {
   var inputElement = document.createElement('input');
   var textInputElement = document.createElement('input');
   var deleteButtonElement = document.createElement('button');
-
   // Give each task's HTML elements content
   inputElement.type = 'checkbox';
   if (this.checked === true) {
@@ -66,19 +66,15 @@ Task.prototype.createLi = function () {
   } else {
     liElement.class = 'incomplete';
   }
-
   textInputElement.type = 'text';
-  textInputElement.value = this.userText;     //Puts user input into textInput element
-  textInputElement.readOnly = true;           //Makes textInput element uneditable                  
-  deleteButtonElement.innerHTML = '';               // no text inside the button       
-
+  textInputElement.value = this.userText; // Puts user input into textInput element
+  textInputElement.readOnly = true;       // Makes textInput element uneditable
+  deleteButtonElement.innerHTML = '';     // no text inside the button
   // Append the HTML elements in order
-
   labelElement.appendChild(inputElement);       // puts the input inside the label
   labelElement.appendChild(textInputElement);   //puts the textInput inside the label
-  labelElement.appendChild(deleteButtonElement);      // puts the button inside the label
+  labelElement.appendChild(deleteButtonElement);// puts the button inside the label
   liElement.appendChild(labelElement);          // puts the label inside the li
-
   return liElement;
 };
 
@@ -99,14 +95,22 @@ function saveListsToLocalStorage() {
 
 // Removes all Lists from local storage
 function removeListsFromLocalStorage() {
-  localStorage.removeItem('List.allLists');
+  localStorage.clear();
 }
 
 // Retrieves all Lists from local storage
 function getListsFromLocalStorage() {
   var storedLists = JSON.parse(localStorage.getItem('List.allLists'));
+  var storedListTitle = storedLists[0].listTitle;
+  var storedListTaskArray = [];
+  // Loops through parsed taskList and creates re-constructs each task
+  // (Each parsed Task lost its 'Task' class, so they have no prototype methods. By creating new instances, they keep their 'Task' class)
+  for (var i = 0; i < storedLists[0].taskList.length; i++) {
+    storedListTaskArray.push(new Task(storedLists[0].taskList[i].userText, storedLists[0].taskList[i].checked, storedLists[0].taskList[i].editing, storedLists[0].taskList[i].removed));
+  }
   if (storedLists) {
-    new List(storedLists[0].listTitle, storedLists[0].taskList);
+    List.allLists = [];
+    new List(storedListTitle, storedListTaskArray);
   }
 }
 
