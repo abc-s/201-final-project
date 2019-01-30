@@ -26,7 +26,14 @@ function renderOnPageLoad() {
 
 // RENDER LIST TITLE
 function renderListName() {
-  h1Element.textContent = List.allLists[0].listTitle;
+  // h1Element.innerHTML = '';
+  var inputElement = document.createElement('input');
+  inputElement.type = 'text';
+  inputElement.value = List.allLists[0].listTitle
+  inputElement.readOnly = true;
+
+  h1Element.appendChild(inputElement);
+  // h1Element.textContent = List.allLists[0].listTitle;
 }
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
