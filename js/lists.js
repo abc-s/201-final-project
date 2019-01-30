@@ -8,7 +8,6 @@
 var h1Element = document.getElementById('list-name');
 var textInputElement = document.getElementById('text-input');
 var addTaskButtonElement = document.getElementById('add-task');
-var removeTaskButtonElement = document.getElementById('remove-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
 
@@ -34,27 +33,6 @@ function handleAddTask(event) {
   var userText = textInputElement.value; // get the user input
   List.allLists[0].addTask(userText);    // create a task with the user input
   List.allLists[0].renderTasks();        // invokes list method that clears page and renders all tasks as li's
-}
-
-// EVENT HANDLER FOR 'REMOVED TASK' BUTTON CLICK
-function handleRemoveTask(event) {
-  event.preventDefault();
-  var taskName = event.target.parentNode.innerText;
-  var removed = event.target.removed;
-  if (removed) {
-    console.log("clicked removed");
-    for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
-      if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
-        List.allLists[0].taskList[i].removed = true;              // Changes the task object's property to 'checked'
-        console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].removed);
-        List.allLists[0].taskList[i].textContent = '';
-        break;
-      }
-    }
-  } else {
-    console.log("clicked removed but not possible");
-  }
-  renderOnPageLoad();
 }
 
 // HANDLES CHECKING A TASK'S CHECKBOX
@@ -83,7 +61,6 @@ function handleCheckboxChange(event) {
 
 // 'ADD TASK' BUTTON CLICK EVENT LISTENER
 addTaskButtonElement.addEventListener('click', handleAddTask);
-removeTaskButtonElement.addEventListener('click', handleRemoveTask);
 
 // 'CHECK TASK' EVENT LISTENERS
 incompleteUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'incomplete' ul
