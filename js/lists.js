@@ -7,6 +7,7 @@
 // DOM ACCESS VARIABLES - unique to lists.html
 var h1Element = document.getElementById('list-name');
 var textInputElement = document.getElementById('text-input');
+var listTitleInputElement = document.getElementById('list-name-input');
 var addTaskButtonElement = document.getElementById('add-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
@@ -18,22 +19,16 @@ var completeUlElement = document.getElementById('complete-list');
 // RENDER ON PAGE LOAD
 function renderOnPageLoad() {
   getListsFromLocalStorage();     // declared in app.js
-
   renderListName();               // declared below
-
   List.allLists[0].renderTasks(); // invokes list method that clears page and renders all tasks as li's
 }
 
 // RENDER LIST TITLE
 function renderListName() {
-  // h1Element.innerHTML = '';
-  var inputElement = document.createElement('input');
-  inputElement.type = 'text';
-  inputElement.value = List.allLists[0].listTitle
-  inputElement.readOnly = true;
-
-  h1Element.appendChild(inputElement);
-  // h1Element.textContent = List.allLists[0].listTitle;
+  listTitleInputElement.value = '';
+  listTitleInputElement.value = List.allLists[0].listTitle;
+  listTitleInputElement.readOnly = true;
+  h1Element.appendChild(listTitleInputElement);
 }
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
@@ -97,9 +92,27 @@ function handleCheckboxChange(event) {
 // 'ADD TASK' BUTTON CLICK EVENT LISTENER
 addTaskButtonElement.addEventListener('click', handleAddTask);
 
+
+// HANDLES DOUBLE-CLICKING A LIST TITLE
+function handleEditListTitle() {
+  event.target.readOnly = false;
+  console.log(event);
+
+}
+
+function handleListTitleBlur() {
+  console.log(event.target);
+  console.log(event);
+}
+
+
 // 'CHECK TASK' EVENT LISTENERS
 incompleteUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'incomplete' ul
 completeUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'complete' ul
+
+// 'EDIT TITLE' EVENT LISTENERS
+h1Element.addEventListener('dblclick', handleEditListTitle);
+h1Element.addEventListener('blur', handleListTitleBlur);
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
