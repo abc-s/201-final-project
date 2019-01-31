@@ -48,7 +48,7 @@ function handleDeleteTask(event) {
     //console.log(event);
     //console.log(event.target);
     var taskName = event.target.previousSibling.value;
-    console.log(`${taskName} was deleted from list`);
+    console.log(taskName);
 
     for(var i=0; i < List.allLists[0].taskList.length; i++){
       if(List.allLists[0].taskList[i].userText === taskName){
