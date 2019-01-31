@@ -6,8 +6,8 @@
 
 // DOM ACCESS VARIABLES - unique to lists.html
 var h1Element = document.getElementById('list-name');
-var textInputElement = document.getElementById('text-input');
 var listTitleInputElement = document.getElementById('list-name-input');
+var textInputElement = document.getElementById('text-input');
 var addTaskButtonElement = document.getElementById('add-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
@@ -27,7 +27,7 @@ function renderOnPageLoad() {
 function renderListName() {
   listTitleInputElement.value = '';
   listTitleInputElement.value = List.allLists[0].listTitle;
-  listTitleInputElement.readOnly = true;
+  listTitleInputElement.disabled = true;
   h1Element.appendChild(listTitleInputElement);
 }
 
@@ -95,24 +95,26 @@ addTaskButtonElement.addEventListener('click', handleAddTask);
 
 // HANDLES DOUBLE-CLICKING A LIST TITLE
 function handleEditListTitle() {
-  event.target.readOnly = false;
-  console.log(event);
-
+  event.target.disabled = false; // Makes the list title editable
 }
 
+// HANDLES CLICKING AWAY FROM LIST TITLE
 function handleListTitleBlur() {
-  console.log(event.target);
-  console.log(event);
+  event.target.disabled = true;                 // Makes the list title un-editable
+  var editedListTitle = event.target.value;     // Grabs the new list title from the page
+  List.allLists[0].listTitle = editedListTitle; // Changes the list title object to match the page
+  removeListsFromLocalStorage();
+  saveListsToLocalStorage();
+  renderOnPageLoad();
 }
-
 
 // 'CHECK TASK' EVENT LISTENERS
 incompleteUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'incomplete' ul
-completeUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'complete' ul
+completeUlElement.addEventListener('change', handleCheckboxChange);   // listens for checkbox change in 'complete' ul
 
 // 'EDIT TITLE' EVENT LISTENERS
-h1Element.addEventListener('dblclick', handleEditListTitle);
-h1Element.addEventListener('blur', handleListTitleBlur);
+h1Element.addEventListener('dblclick', handleEditListTitle);          // Fires handler when the list title is double-clicked
+listTitleInputElement.addEventListener('blur', handleListTitleBlur);  // Fires handler when the list title input is blurred (focused off of)
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
