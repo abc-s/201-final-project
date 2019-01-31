@@ -90,6 +90,11 @@ Task.prototype.createLi = function () {
 // RENDERS CORRECT PAGE
 function renderInitialPage() {
   // TODO: if there's local storage, redirect to lists.html
+  if (localStorage.List.allLists) {
+    console.log(localStorage);
+    window.location.href = 'lists.html';  // redirect to lists.html
+
+  }
 }
 
 // Saves all Lists to local storage
@@ -123,4 +128,4 @@ function getListsFromLocalStorage() {
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// renderInitialPage(); // TODO: build this function
+renderInitialPage(); // TODO: build this function
