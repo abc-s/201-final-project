@@ -25,6 +25,15 @@ function handleNewList(event) {
 // BUTTON CLICK EVENT LISTENER
 buttonElement.addEventListener('click', handleNewList);
 
+// REDIRECT TO LISTS.HTML IF A LIST ALREADY EXISTS
+function renderInitialPage() {
+  if (localStorage.getItem('List.allLists')) {
+    window.location.href = 'lists.html';
+  }
+}
+
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+renderInitialPage(); 
