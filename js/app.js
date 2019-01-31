@@ -38,6 +38,7 @@ List.prototype.renderTasks = function () {
   }
   removeListsFromLocalStorage();  // clear the old list from local storage
   saveListsToLocalStorage();      // add the new list to local storage
+  textInputElement.value = '';
 };
 
 // TASK CONSTRUCTOR FUNCTION
@@ -87,16 +88,6 @@ Task.prototype.createLi = function () {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Ordered with a stepdown approach. Higher level functions are on top and lower levels below.
 
-// RENDERS CORRECT PAGE
-function renderInitialPage() {
-  // TODO: if there's local storage, redirect to lists.html
-  if (localStorage.List.allLists) {
-    console.log(localStorage);
-    window.location.href = 'lists.html';  // redirect to lists.html
-
-  }
-}
-
 // Saves all Lists to local storage
 function saveListsToLocalStorage() {
   localStorage.setItem('List.allLists', JSON.stringify(List.allLists));
@@ -127,5 +118,3 @@ function getListsFromLocalStorage() {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-renderInitialPage(); // TODO: build this function
