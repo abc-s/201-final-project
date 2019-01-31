@@ -13,6 +13,12 @@ var listTitleInputElement = document.getElementById('new-title');
 // FUNCTION DECLARATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+// FOCUSES ON INPUT
+function focusOnInput() {
+  listTitleInputElement.focus();
+  listTitleInputElement.select();
+}
+
 // BUTTON CLICK EVENT HANDLER
 function handleNewList(event) {
   event.preventDefault();
@@ -28,3 +34,5 @@ buttonElement.addEventListener('click', handleNewList);
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+focusOnInput();

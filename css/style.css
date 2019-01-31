@@ -26,7 +26,7 @@ charleston green
 
 html, body {
     height: 100%;
-    background: #F6F8FA;
+    background: #E1E4E7;
     color: #24292D;
     font-size: 1rem;
     font-family: 'Open Sans', Helvetica, sans-serif;
@@ -78,7 +78,7 @@ form input {
     font-size: 4vw;
     border-radius: 20vw;
     padding: 1.5vw 5vw;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .flex-container {
@@ -119,10 +119,32 @@ form input {
 /* ---------------------------------------------------------------------------------------------------- */
 /* Specific to index.html */
 
+#name-list {
+    line-height: 140%;
+}
+
+#new-title {
+    width: 100%;
+    padding: .8vw 1vw .8vw 2vw;
+    font-size: 4vw;
+    border: none;
+    background: #ffffff;
+
+}
+
+#new-title:focus {
+    outline: none;
+    box-shadow: 0px 0px 4px red;
+    caret-color: red;
+    background: #F5F7F9;
+}
+
 #add-list {
     font-size: 4vw;
     border-radius: 100%;
 }
+
+
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* Specific to about.html */
