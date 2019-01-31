@@ -1,0 +1,113 @@
+/* See css-tricks' guide on flexbox: 
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+font-family: 'Noto Sans SC', sans-serif;
+font-family: 'Open Sans', sans-serif;
+*/
+
+html, body {
+    height: 100%;
+    background: #ffffff;
+    color: #222222;
+    font-size: 1rem;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-weight: 400; /* 'Open Sans' regular = 400 */
+}
+
+h1 {
+    font-size: 10vw;
+    font-family: 'Noto Sans SC', sans-serif;
+
+}
+
+header a, footer a {
+    font-size: 3.5vw;
+}
+
+form input {
+    font-size: 4vw;
+    border-radius: 20vw;
+    padding: 1.5vw 5vw;
+    text-align: center;
+}
+
+.flex-container {
+    border: 3px dashed green;
+
+    height: 99.9%;
+    /* flex: <'flex-grow'> <flex-shrink'> <'flex-basis'> */
+    /* flex: 1 0; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content distributes items along main axis. 
+    'space-between' makes items are evenly distributed in the line; first item is on the start line, last item on the end line. */
+    justify-content: space-between;
+    /* align-items distributes items along the cross axis.
+    'center' makes items centered in the cross-axis. */
+    align-items: center;
+}
+
+.flex-container > *, form {
+    border: 3px dashed red;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Specific to index.html */
+
+#add-list {
+    font-size: 4vw;
+    border-radius: 100%;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Specific to about.html */
+
+.team-list {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+/* border: 3px dashed red; */
+}
+
+.team-list li {
+    display: flex;
+    flex-flow: row wrap;
+    /* max-height: 20vw;  */
+
+}
+
+.team-list img {
+    /* border: 3px dashed green; */
+    max-width: 10vw; 
+    border-radius: 100%;
+}
+
+.team-list section {
+    /* border: 3px dashed green; */
+    max-width: 70vw; 
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+
+}
+
+
+
+/* 
+margin: 10px;
+border: 3px solid #000;
+box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3); 
+max-width: 25vw; 
+*/
+
+
+.team-list li section > h2 {
+    font-weight: bold;
+}
