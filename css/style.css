@@ -31,12 +31,9 @@ form input {
     text-align: center;
 }
 
-
-/* script {
-    display: none !important;
-} */
-
 .flex-container {
+    border: 3px dashed green;
+
     height: 99.9%;
     /* flex: <'flex-grow'> <flex-shrink'> <'flex-basis'> */
     /* flex: 1 0; */
@@ -51,9 +48,12 @@ form input {
 }
 
 .flex-container > *, form {
+    border: 3px dashed red;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -67,49 +67,46 @@ form input {
 /* ---------------------------------------------------------------------------------------------------- */
 /* Specific to about.html */
 
-main {
-    /* justify-content: center; */
-    /* border: 5px dashed magenta; */
-    /* margin: 0 10vw; */
-    /* min-height: 90vh; */
-}
-
 .team-list {
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+/* border: 3px dashed red; */
 }
 
-.team-list > li {
+.team-list li {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    /* flex-wrap: wrap; */
-}
-
-.team-list li > figure {
-    border: 5px dashed green;
-    width: 100%; /*or whatever you choose*/
-    max-width: 200px;
-    height: auto;
-    display: flex;
+    flex-flow: row wrap;
+    /* max-height: 20vw;  */
 
 }
 
-.team-list li > figure img {
+.team-list img {
+    /* border: 3px dashed green; */
+    max-width: 10vw; 
     border-radius: 100%;
-    flex: 0 1 auto;
-    width: 100%;
-    max-width: 200px; /*actual image width*/
-    max-height: 200px;
-    /* height: auto; /* maintain aspect ratio*/
-    margin: 0 0 0 auto; /*optional centering of image*/
 }
 
-.team-list li > section {
+.team-list section {
+    /* border: 3px dashed green; */
+    max-width: 70vw; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    /* align-items: center; */
+    justify-content: center;
+
 }
+
+
+
+/* 
+margin: 10px;
+border: 3px solid #000;
+box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3); 
+max-width: 25vw; 
+*/
+
 
 .team-list li section > h2 {
     font-weight: bold;
