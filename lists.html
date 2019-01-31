@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
+    <title>CHEKO&#10003;</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:500|Open+Sans" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <a id="" href="index.html" title="">CHEKOV</a>
-    </header>
-
-    <a id="" href="index.html" title=""></a>
-    <h1 id="list-name"><input id="list-name-input" type="text" /></h1>
-    <form>
-        <input id="text-input" type="" />
-        <button id="add-task"></button>
-    </form>
-    <h3>Incomplete</h3>
-    <ul id="incomplete-list">
-        <!-- <li class="">
-            <input type="checkbox" />
-            <button id="delete-button"></button>
-        </li> -->
-    </ul>
-    <h3>Completed</h3>
-    <ul id="complete-list">
-        <!-- <li class="">
-            <input type="checkbox" checked />
-            <button id="delete-button"></button>
-        </li> -->
-    </ul>
-
+    <div class="flex-container">
+        <header>
+            <a id="" href="index.html" title="">CHEKO&#10003;</a>
+        </header>
+        <main>
+            <a id="" href="index.html" title=""></a>
+            <h1 id="list-name"><input id="list-name-input" type="text" /></h1>
+            <form autocomplete="off">
+                <input id="text-input" type="" />
+                <button id="add-task"></button>
+            </form>
+            <h3>Incomplete</h3>
+            <ul id="incomplete-list"></ul>
+            <h3>Completed</h3>
+            <ul id="complete-list"></ul>
+        </main>
+        <footer>
+            <a href="about.html" title="">About</a>
+            <!-- <p>Placeholder for about-me page</p> -->
+        </footer>
+    </div>
+    <script src="js/app.js"></script>
+    <script src="js/lists.js"></script>
 </body>
-
-<script src="js/app.js"></script>
-<script src="js/lists.js"></script>
 
 </html>
