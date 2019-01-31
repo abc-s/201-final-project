@@ -40,24 +40,37 @@ function handleAddTask(event) {
 
 // EVENT HANDLER FOR 'REMOVED TASK' BUTTON CLICK
 function handleDeleteTask(event) {
-  console.log('deletetask event fired');
-  event.preventDefault();
-  console.log(event.target);
-  var taskName = event.target.parentNode.innerText;
-  var removed = event.target.removed;
-  if (removed) {
-    for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
-      if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
-        List.allLists[0].taskList[i].removed = true;              // Changes the task object's property to 'checked'
-        console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].removed);
-        List.allLists[0].taskList[i].textContent = '';
-        break;
+  if(event.target.id === 'delete-button'){
+    //console.log('deletetask event fired');
+    event.preventDefault();
+    //console.log(event);
+    //console.log(event.target);
+    var taskName = event.target.previousSibling.value;
+    console.log(taskName);
+
+    for(var i=0; i < List.allLists[0].taskList.length; i++){
+      if(List.allLists[0].taskList[i].userText === taskName){
+        List.allLists[0].taskList.splice(i, 1);
       }
     }
-  } else {
-    console.log("clicked removed but not possible");
+
+    // var removed = event.target.removed;
+    // if (removed) {
+    //   for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
+    //     if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
+    //       List.allLists[0].taskList[i].removed = true;              // Changes the task object's property to 'checked'
+    //       console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].removed);
+    //       List.allLists[0].taskList[i].textContent = '';
+    //       break;
+    //     }
+    //   }
+    // } else {
+    //   console.log("clicked removed but not possible");
+    // }
+    removeListsFromLocalStorage();
+    saveListsToLocalStorage();
+    renderOnPageLoad();
   }
-  renderOnPageLoad();
 }
 
 // HANDLES CHECKING A TASK'S CHECKBOX
@@ -98,7 +111,9 @@ incompleteUlElement.addEventListener('change', handleCheckboxChange); // listens
 completeUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'complete' ul
 
 //REMOVE TASK EVENT LISTENER
-incompleteUlElement.addEventListener('submit', handleDeleteTask);
+incompleteUlElement.addEventListener('click', handleDeleteTask);
+completeUlElement.addEventListener('click', handleDeleteTask);
+
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
