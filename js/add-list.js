@@ -7,7 +7,7 @@
 
 // DOM ACCESS VARIABLES - unique to add-list.html
 var buttonElement = document.getElementById('add-list');
-var inputElement = document.getElementById('new-title');
+var listTitleInputElement = document.getElementById('new-title');
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
@@ -16,8 +16,7 @@ var inputElement = document.getElementById('new-title');
 // BUTTON CLICK EVENT HANDLER
 function handleNewList(event) {
   event.preventDefault();
-  var listTitle = inputElement.value;   // get what the user typed for 'list name'
-  console.log(listTitle);
+  var listTitle = listTitleInputElement.value;   // get what the user typed for 'list name'
   new List(listTitle, []);              // create a new List (pushes to List.allLists array) with the user input and start an empty array of Tasks
   saveListsToLocalStorage();            // save all Lists to local storage
   window.location.href = 'lists.html';  // redirect to lists.html

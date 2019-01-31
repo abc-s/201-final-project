@@ -29,7 +29,6 @@ List.prototype.renderTasks = function () {
   completeUlElement.innerHTML = '';
   // Loop through the tasks of a list
   for (var i = 0; i < this.taskList.length; i++) {
-    console.log(this.taskList[i]);
     var newLi = this.taskList[i].createLi();      // create a li for each task 
     if (this.taskList[i].checked === false) {     // if the task isn't checked, append the 'incomplete' ul
       incompleteUlElement.appendChild(newLi);
@@ -58,6 +57,7 @@ Task.prototype.createLi = function () {
   var inputElement = document.createElement('input');
   var textInputElement = document.createElement('input');
   var deleteButtonElement = document.createElement('button');
+
   // Give each task's HTML elements content
   inputElement.type = 'checkbox';
   if (this.checked === true) {
@@ -68,8 +68,10 @@ Task.prototype.createLi = function () {
   }
   textInputElement.type = 'text';
   textInputElement.value = this.userText; // Puts user input into textInput element
-  textInputElement.readOnly = true;       // Makes textInput element uneditable
+  textInputElement.disabled = true;       // Makes textInput element uneditable
   deleteButtonElement.innerHTML = '';     // no text inside the button
+  deleteButtonElement.id = 'delete-button';
+
   // Append the HTML elements in order
   labelElement.appendChild(inputElement);       // puts the input inside the label
   labelElement.appendChild(textInputElement);   //puts the textInput inside the label
