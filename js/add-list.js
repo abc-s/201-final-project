@@ -13,6 +13,12 @@ var listTitleInputElement = document.getElementById('new-title');
 // FUNCTION DECLARATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+// FOCUSES ON INPUT
+function focusOnInput() {
+  listTitleInputElement.focus();
+  listTitleInputElement.select();
+}
+
 // BUTTON CLICK EVENT HANDLER
 function handleNewList(event) {
   event.preventDefault();
@@ -36,4 +42,5 @@ function renderInitialPage() {
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+focusOnInput();
 renderInitialPage(); 
