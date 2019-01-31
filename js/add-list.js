@@ -17,7 +17,6 @@ var listTitleInputElement = document.getElementById('new-title');
 function handleNewList(event) {
   event.preventDefault();
   var listTitle = listTitleInputElement.value;   // get what the user typed for 'list name'
-  console.log(listTitle);
   new List(listTitle, []);              // create a new List (pushes to List.allLists array) with the user input and start an empty array of Tasks
   saveListsToLocalStorage();            // save all Lists to local storage
   window.location.href = 'lists.html';  // redirect to lists.html
