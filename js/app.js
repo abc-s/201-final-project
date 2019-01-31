@@ -69,6 +69,8 @@ Task.prototype.createLi = function () {
   textInputElement.type = 'text';
   textInputElement.value = this.userText; // Puts user input into textInput element
   textInputElement.disabled = true;       // Makes textInput element uneditable
+  // TODO: Add 'required' attribute to textInputElement for form validation (but commented-out line below isn't doing it)
+  // textInputElement.required = true;
   deleteButtonElement.innerHTML = '';     // no text inside the button
   deleteButtonElement.id = 'delete-button';
 
