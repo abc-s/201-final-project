@@ -7,11 +7,19 @@ font-family: 'Open Sans', sans-serif;
 
 html, body {
     height: 100%;
-    background: #ffffff;
+    background: lightgray;
     color: #222222;
     font-size: 1rem;
     font-family: 'Open Sans', Helvetica, sans-serif;
     font-weight: 400; /* 'Open Sans' regular = 400 */
+}
+
+body {
+    /* background: #ffffff; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -25,11 +33,11 @@ h1 {
   }
 
 header a, footer a {
-    font-size: 3.5vw;
+    font-size: 2vw;
 }
 @media screen and (min-width: 1200px) {
     header a, footer a {
-       font-size: 100%;
+       font-size: 150%;
     }
 }
 
@@ -41,30 +49,39 @@ form input {
 }
 
 .flex-container {
-    border: 3px dashed green;
-
+    background: #ffffff;    
     height: 99.9%;
-    /* flex: <'flex-grow'> <flex-shrink'> <'flex-basis'> */
-    /* flex: 1 0; */
     display: flex;
     flex-direction: column;
-    /* justify-content distributes items along main axis. 
-    'space-between' makes items are evenly distributed in the line; first item is on the start line, last item on the end line. */
+    flex-grow: 1;
+    /* justify-content distributes items along main axis. 'space-between' makes items are evenly distributed in the line; first item is on the start line, last item on the end line. */
     justify-content: space-between;
-    /* align-items distributes items along the cross axis.
-    'center' makes items centered in the cross-axis. */
+    /* align-items distributes items along the cross axis. 'center' makes items centered in the cross-axis. */
     align-items: center;
+    min-height: 0;
 }
 
 .flex-container > *, form {
-    border: 3px dashed red;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-shrink: 1;
-    
 }
+
+.flex-container > * {
+    /* border: 3px dashed red; */
+}
+
+.flex-container main {
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* .flex-container main > * {
+    border: 3px dashed orange;
+} */
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* Specific to index.html */
@@ -77,23 +94,30 @@ form input {
 /* ---------------------------------------------------------------------------------------------------- */
 /* Specific to about.html */
 
+.about-body {
+    /* to make about page content overflow scrollable */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
 .team-list {
 display: flex;
 flex-wrap: wrap;
 align-items: center;
 justify-content: center;
 flex-shrink: 1;
-
-/* border: 3px dashed red; */
 }
 
 .team-list li {
     display: flex;
     flex-flow: row wrap;
-    /* max-height: 20vw;  */
     flex-shrink: 1;
-
-
 }
 
 .team-list figure {
@@ -101,7 +125,6 @@ flex-shrink: 1;
 }
 
 .team-list img {
-    /* border: 3px dashed green; */
     max-width: 10vw; 
     border-radius: 100%;
     flex-shrink: 1;
@@ -109,26 +132,12 @@ flex-shrink: 1;
 }
 
 .team-list section {
-    /* border: 3px dashed green; */
     max-width: 70vw; 
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
     flex-shrink: 1;
-
-
 }
-
-
-
-/* 
-margin: 10px;
-border: 3px solid #000;
-box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3); 
-max-width: 25vw; 
-*/
-
 
 .team-list li section > h2 {
     font-weight: bold;
