@@ -38,6 +38,7 @@ List.prototype.renderTasks = function () {
   }
   removeListsFromLocalStorage();  // clear the old list from local storage
   saveListsToLocalStorage();      // add the new list to local storage
+  textInputElement.value = '';
 };
 
 // TASK CONSTRUCTOR FUNCTION
@@ -69,6 +70,8 @@ Task.prototype.createLi = function () {
   textInputElement.type = 'text';
   textInputElement.value = this.userText; // Puts user input into textInput element
   textInputElement.disabled = true;       // Makes textInput element uneditable
+  // TODO: Add 'required' attribute to textInputElement for form validation (but commented-out line below isn't doing it)
+  // textInputElement.required = true;
   deleteButtonElement.innerHTML = '';     // no text inside the button
   deleteButtonElement.id = 'delete-button';
 
@@ -85,11 +88,6 @@ Task.prototype.createLi = function () {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Ordered with a stepdown approach. Higher level functions are on top and lower levels below.
 
-// RENDERS CORRECT PAGE
-function renderInitialPage() {
-  // TODO: if there's local storage, redirect to lists.html
-}
-
 // Saves all Lists to local storage
 function saveListsToLocalStorage() {
   localStorage.setItem('List.allLists', JSON.stringify(List.allLists));
@@ -102,15 +100,16 @@ function removeListsFromLocalStorage() {
 
 // Retrieves all Lists from local storage
 function getListsFromLocalStorage() {
-  var storedLists = JSON.parse(localStorage.getItem('List.allLists'));
-  var storedListTitle = storedLists[0].listTitle;
+  var retrievedLists = JSON.parse(localStorage.getItem('List.allLists'));
+  var storedListTitle = retrievedLists[0].listTitle;
   var storedListTaskArray = [];
-  // Loops through parsed taskList and creates re-constructs each task
+  // Loops through parsed taskList and re-constructs each task
   // (Each parsed Task lost its 'Task' class, so they have no prototype methods. By creating new instances, they keep their 'Task' class)
-  for (var i = 0; i < storedLists[0].taskList.length; i++) {
-    storedListTaskArray.push(new Task(storedLists[0].taskList[i].userText, storedLists[0].taskList[i].checked, storedLists[0].taskList[i].editing, storedLists[0].taskList[i].removed));
+  for (var i = 0; i < retrievedLists[0].taskList.length; i++) {
+    var reconstructedList = new Task(retrievedLists[0].taskList[i].userText, retrievedLists[0].taskList[i].checked, retrievedLists[0].taskList[i].editing, retrievedLists[0].taskList[i].removed);
+    storedListTaskArray.push(reconstructedList);
   }
-  if (storedLists) {
+  if (retrievedLists) {
     List.allLists = [];
     new List(storedListTitle, storedListTaskArray);
   }
@@ -119,5 +118,3 @@ function getListsFromLocalStorage() {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// renderInitialPage(); // TODO: build this function

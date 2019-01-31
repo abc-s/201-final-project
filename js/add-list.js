@@ -13,6 +13,12 @@ var listTitleInputElement = document.getElementById('new-title');
 // FUNCTION DECLARATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+// FOCUSES ON INPUT
+function focusOnInput() {
+  listTitleInputElement.focus();
+  listTitleInputElement.select();
+}
+
 // BUTTON CLICK EVENT HANDLER
 function handleNewList(event) {
   event.preventDefault();
@@ -25,6 +31,16 @@ function handleNewList(event) {
 // BUTTON CLICK EVENT LISTENER
 buttonElement.addEventListener('click', handleNewList);
 
+// REDIRECT TO LISTS.HTML IF A LIST ALREADY EXISTS
+function renderInitialPage() {
+  if (localStorage.getItem('List.allLists')) {
+    window.location.href = 'lists.html';
+  }
+}
+
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+focusOnInput();
+renderInitialPage(); 

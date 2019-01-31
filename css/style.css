@@ -1,0 +1,205 @@
+/* See css-tricks' guide on flexbox: 
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+font-family: 'Noto Sans SC', sans-serif;
+font-family: 'Open Sans', sans-serif;
+
+Color palette:
+https://coolors.co/f6f8fa-24292d-e1e4e7-3f4447-f5f7f9
+
+ghost white
+#F6F8FA
+
+white smoke
+#F5F7F9
+
+platinum
+#E1E4E7
+
+arsenic
+#3F4447
+
+charleston green
+#24292D
+
+*/
+
+html, body {
+    height: 100%;
+    background: #E1E4E7;
+    color: #24292D;
+    font-size: 1rem;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-weight: 400; /* 'Open Sans' regular = 400 */
+}
+
+body {
+    /* background: #ffffff; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 10vw;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+@media screen and (min-width: 1200px) {
+    h1 {
+       font-size: 750%;
+    }
+  }
+
+header a, footer a {
+    color: #3F4447;
+    font-size: 2vw;
+    text-decoration: none;
+    /* font-family: 'Noto Sans SC', sans-serif; */
+    font-weight: 600;
+    letter-spacing: -0.05rem;
+}
+@media screen and (min-width: 1200px) {
+    header a, footer a {
+       font-size: 150%;
+    }
+}
+
+header a span {
+    font-size: 3.5vw;
+    color: red;
+    line-height: 79%;
+    display: inline-block;
+    margin-left: -5px;
+
+}
+
+form input {
+    font-size: 4vw;
+    border-radius: 20vw;
+    padding: 1.5vw 5vw;
+    /* text-align: center; */
+}
+
+.flex-container {
+    /* background: #ffffff;     */
+    height: 99.9%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* justify-content distributes items along main axis. 'space-between' makes items are evenly distributed in the line; first item is on the start line, last item on the end line. */
+    justify-content: space-between;
+    /* align-items distributes items along the cross axis. 'center' makes items centered in the cross-axis. */
+    align-items: center;
+    min-height: 0;
+}
+
+.flex-container > *, form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-container > * {
+    /* border: 3px dashed red; */
+}
+
+.flex-container main {
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* .flex-container main > * {
+    border: 3px dashed orange;
+} */
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Specific to index.html */
+
+#name-list {
+    line-height: 140%;
+}
+
+#new-title {
+    width: 100%;
+    padding: .8vw 1vw .8vw 2vw;
+    font-size: 4vw;
+    border: none;
+    background: #ffffff;
+    color: red;
+    border: 5px solid transparent;
+    outline: none;
+
+
+}
+
+#new-title:focus {
+    border: 4px solid red;
+    outline: none;
+    /* box-shadow: 0px 0px 4px red; */
+    caret-color: red;
+    background: #FFD0D0;
+    color: #ffffff;
+}
+
+#add-list {
+    font-size: 4vw;
+    border-radius: 100%;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Specific to about.html */
+
+.about-body {
+    /* to make about page content overflow scrollable */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.team-list {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+flex-shrink: 1;
+}
+
+.team-list li {
+    display: flex;
+    flex-flow: row wrap;
+    flex-shrink: 1;
+}
+
+.team-list figure {
+    flex-shrink: 1;
+}
+
+.team-list img {
+    max-width: 10vw; 
+    border-radius: 100%;
+    flex-shrink: 1;
+
+}
+
+.team-list section {
+    max-width: 70vw; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 1;
+}
+
+.team-list li section > h2 {
+    font-weight: bold;
+}

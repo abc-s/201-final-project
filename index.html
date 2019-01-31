@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
 
-    </head>
-    <body>
+<head>
+    <title>CHEKO&#10003;</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:500|Open+Sans" rel="stylesheet">
+</head>
+
+<body>
+    <div class="flex-container">
         <header>
-            <a id="" href="index.html" title="">CHEKOV</a>
+            <a id="" href="index.html" title="">cheko<span>&#10003;</span></a>
         </header>
-        <section>
-            <h1>Name Your List</h1>
-            <form>
+
+        <main>
+            <h1 id="name-list">name your list</h1>
+            <form autocomplete="off">
                 <input id="new-title" type="" />
-                <button id="add-list" title="Click to submit"><img src=""> (+) </button>
+                <input type="image" id="add-list" title="Click to submit" src="img/plus-svgrepo-com.svg">
             </form>
-        </section>
-        <aside>
-            <button id="display-list" title="View your lists"> ( <- ) </button>
-        </aside>
+        </main>
+        <!-- <aside>
+        <button id="display-list" title="View your lists"></button>
+    </aside> -->
         <footer>
-            <a href="about.html" title=""> (i)</a>
-             <p>Placeholder for about-me page</p> 
+            <!-- <a href="about.html" title=""><img src="img/about-us-svgrepo-com (2).svg" alt="image" id=""></a> -->
+            <a href="about.html" title="">
+                <img src="img/about-us-svgrepo-com (2).svg" alt="image" width="80">
+            </a>
+            <!-- <p>Placeholder for about-me page</p> -->
         </footer>
-        <script src="js/app.js"></script>
-        <script src="js/add-list.js"></script>
-    </body>
+    </div>
+    <script src="js/app.js" contenteditable="false"></script>
+    <script src="js/add-list.js"></script>
+</body>
+
 </html>
