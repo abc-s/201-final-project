@@ -1,32 +1,34 @@
 'use strict';
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++
 // DATA
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++
 
 // DOM ACCESS VARIABLES - unique to lists.html
 var h1Element = document.getElementById('list-name');
+var listTitleInputElement = document.getElementById('list-name-input');
 var textInputElement = document.getElementById('text-input');
 var addTaskButtonElement = document.getElementById('add-task');
 var incompleteUlElement = document.getElementById('incomplete-list');
 var completeUlElement = document.getElementById('complete-list');
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++
 
 // RENDER ON PAGE LOAD
 function renderOnPageLoad() {
   getListsFromLocalStorage();     // declared in app.js
-
   renderListName();               // declared below
-
   List.allLists[0].renderTasks(); // invokes list method that clears page and renders all tasks as li's
 }
 
 // RENDER LIST TITLE
 function renderListName() {
-  h1Element.textContent = List.allLists[0].listTitle;
+  listTitleInputElement.value = '';
+  listTitleInputElement.value = List.allLists[0].listTitle;
+  listTitleInputElement.disabled = true;
+  h1Element.appendChild(listTitleInputElement);
 }
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
@@ -90,12 +92,64 @@ function handleCheckboxChange(event) {
 // 'ADD TASK' BUTTON CLICK EVENT LISTENER
 addTaskButtonElement.addEventListener('click', handleAddTask);
 
+
+// HANDLES DOUBLE-CLICKING A LIST TITLE
+function handleEditListTitle(event) {
+  event.target.disabled = false; // Makes the list title editable
+}
+
+// HANDLES CLICKING AWAY FROM LIST TITLE
+function handleListTitleBlur(event) {
+  event.target.disabled = true;                 // Makes the list title uneditable
+  var editedListTitle = event.target.value;     // Grabs the new list title from the page
+  List.allLists[0].listTitle = editedListTitle; // Changes the list title object to match the page
+  removeListsFromLocalStorage();
+  saveListsToLocalStorage();
+  renderOnPageLoad();
+}
+
+// HANDLES DOUBLE-CLICKING A TASK
+var lastEditedTaskValue;                      // Variable to store the input value when a task is clicked into
+var lastEditedTaskInputElement;               // Variable to store the input element clicked into
+function handleEditTask(event) {
+  lastEditedTaskValue = event.target.value;   // Assigns value to variables above
+  lastEditedTaskInputElement = event.target;
+  event.target.disabled = false;              // Makes the task editable
+  lastEditedTaskInputElement.addEventListener('blur', handleEditTaskBlur);  // Starts listening for blur of current task (focused off of)
+}
+
+// HANDLES CLICKING AWAY FROM EDITED TASK
+function handleEditTaskBlur(event) {
+  event.target.disabled = true;
+  var newEditedTaskValue = event.target.value;                             // Grabs the new task content from the page
+  if (lastEditedTaskValue !== newEditedTaskValue) {                        // Runs the rest of the function only if task value changed
+    console.log('content changed');
+    for (var i = 0; i < List.allLists[0].taskList.length; i++) {           // Loops through all the tasks
+      if (List.allLists[0].taskList[i].userText === lastEditedTaskValue) { // Finds the targeted task
+        List.allLists[0].taskList[i].userText = newEditedTaskValue;        // Changes the task object's userText to the new value
+        break;
+      }
+    }      
+  }
+  lastEditedTaskInputElement.removeEventListener('blur', handleEditTaskBlur); // Stops listening for blur of current task
+  removeListsFromLocalStorage();
+  saveListsToLocalStorage();
+  renderOnPageLoad();
+}
+
 // 'CHECK TASK' EVENT LISTENERS
 incompleteUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'incomplete' ul
-completeUlElement.addEventListener('change', handleCheckboxChange); // listens for checkbox change in 'complete' ul
+completeUlElement.addEventListener('change', handleCheckboxChange);   // listens for checkbox change in 'complete' ul
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// 'EDIT TITLE' EVENT LISTENERS
+h1Element.addEventListener('dblclick', handleEditListTitle);          // Fires handler when the list title is double-clicked
+listTitleInputElement.addEventListener('blur', handleListTitleBlur);  // Fires handler when the list title input is blurred (focused off of)
+
+// 'EDIT TASK' EVENT LISTENER
+incompleteUlElement.addEventListener('dblclick', handleEditTask); // Listens for double-click in 'incomplete' ul
+
+// +++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION INVOCATIONS
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++
 
 renderOnPageLoad();
