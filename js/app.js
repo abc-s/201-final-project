@@ -57,6 +57,7 @@ Task.prototype.createLi = function () {
   var inputElement = document.createElement('input');
   var textInputElement = document.createElement('input');
   var deleteButtonElement = document.createElement('button');
+
   // Give each task's HTML elements content
   inputElement.type = 'checkbox';
   if (this.checked === true) {
@@ -69,6 +70,8 @@ Task.prototype.createLi = function () {
   textInputElement.value = this.userText; // Puts user input into textInput element
   textInputElement.disabled = true;       // Makes textInput element uneditable
   deleteButtonElement.innerHTML = '';     // no text inside the button
+  deleteButtonElement.id = 'delete-button';
+
   // Append the HTML elements in order
   labelElement.appendChild(inputElement);       // puts the input inside the label
   labelElement.appendChild(textInputElement);   //puts the textInput inside the label
