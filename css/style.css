@@ -131,6 +131,8 @@ form input {
     background: #ffffff;
     color: red;
     border: 5px solid transparent;
+    outline: none;
+
 
 }
 
