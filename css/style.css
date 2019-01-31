@@ -1,0 +1,84 @@
+/* See css-tricks' guide on flexbox: 
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+*/
+
+html, body {
+    height: 100%;
+    background: #ffffff;
+    color: #222222;
+}
+
+/* script {
+    display: none !important;
+} */
+
+.flex-container {
+    height: 99.9%;
+    /* flex: <'flex-grow'> <flex-shrink'> <'flex-basis'> */
+    /* flex: 1 0; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content distributes items along main axis. 
+    'space-between' makes items are evenly distributed in the line; first item is on the start line, last item on the end line. */
+    justify-content: space-between;
+    /* align-items distributes items along the cross axis.
+    'center' makes items centered in the cross-axis. */
+    align-items: center;
+}
+
+.flex-container > *, form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Specific to about.html */
+
+main {
+    /* justify-content: center; */
+    border: 5px dashed magenta;
+    margin: 0 10vw;
+    /* min-height: 90vh; */
+}
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-list > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
+.team-list li > figure {
+    border: 5px dashed green;
+    width: 100%; /*or whatever you choose*/
+    max-width: 200px;
+    height: auto;
+    display: flex;
+
+}
+
+.team-list li > figure img {
+    border-radius: 100%;
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: 200px; /*actual image width*/
+    max-height: 200px;
+    /* height: auto; /* maintain aspect ratio*/
+    margin: 0 0 0 auto; /*optional centering of image*/
+}
+
+.team-list li > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.team-list li section > h2 {
+    font-weight: bold;
+}
