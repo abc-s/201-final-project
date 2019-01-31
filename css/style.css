@@ -3,12 +3,31 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 font-family: 'Noto Sans SC', sans-serif;
 font-family: 'Open Sans', sans-serif;
+
+Color palette:
+https://coolors.co/f6f8fa-24292d-e1e4e7-3f4447-f5f7f9
+
+ghost white
+#F6F8FA
+
+white smoke
+#F5F7F9
+
+platinum
+#E1E4E7
+
+arsenic
+#3F4447
+
+charleston green
+#24292D
+
 */
 
 html, body {
     height: 100%;
-    background: lightgray;
-    color: #222222;
+    background: #F6F8FA;
+    color: #24292D;
     font-size: 1rem;
     font-family: 'Open Sans', Helvetica, sans-serif;
     font-weight: 400; /* 'Open Sans' regular = 400 */
@@ -33,12 +52,26 @@ h1 {
   }
 
 header a, footer a {
+    color: #3F4447;
     font-size: 2vw;
+    text-decoration: none;
+    /* font-family: 'Noto Sans SC', sans-serif; */
+    font-weight: 600;
+    letter-spacing: -0.05rem;
 }
 @media screen and (min-width: 1200px) {
     header a, footer a {
        font-size: 150%;
     }
+}
+
+header a span {
+    font-size: 3.5vw;
+    color: red;
+    line-height: 79%;
+    display: inline-block;
+    margin-left: -5px;
+
 }
 
 form input {
@@ -49,7 +82,7 @@ form input {
 }
 
 .flex-container {
-    background: #ffffff;    
+    /* background: #ffffff;     */
     height: 99.9%;
     display: flex;
     flex-direction: column;
