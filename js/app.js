@@ -71,7 +71,7 @@ Task.prototype.createLi = function () {
   textInputElement.value = this.userText; // Puts user input into textInput element
   textInputElement.disabled = true;       // Makes textInput element uneditable
   textInputElement.required = true;       // Add 'required' attribute to task input element for form validation
-  deleteButtonElement.innerHTML = '';     // no text inside the button
+  deleteButtonElement.innerHTML = '<img src="img/delete-button-svgrepo-com.svg" alt="image" id="delete-button" width="30">';        // no text inside the button
   deleteButtonElement.id = 'delete-button';
 
   // Append the HTML elements in order

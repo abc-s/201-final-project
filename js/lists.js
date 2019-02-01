@@ -48,12 +48,13 @@ function handleAddTask(event) {
 
 // EVENT HANDLER FOR 'REMOVED TASK' BUTTON CLICK
 function handleDeleteTask(event) {
-  if(event.target.id === 'delete-button'){
+  console.log(event);
+  if(event.target.id === 'delete-button' || event.target.id === ('delete-button-image')){
     //console.log('deletetask event fired');
     event.preventDefault();
     //console.log(event);
     //console.log(event.target);
-    var taskName = event.target.previousSibling.value;
+    var taskName = event.target.parentNode.previousSibling.value;
     console.log(taskName);
 
     for(var i=0; i < List.allLists[0].taskList.length; i++){
