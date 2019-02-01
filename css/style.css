@@ -65,12 +65,16 @@ header a, footer a {
     }
 }
 
+header a {
+    margin-left: 30px;
+}
+
 header a span {
     font-size: 3.5vw;
     color: red;
     line-height: 79%;
     display: inline-block;
-    margin-left: -5px;
+    margin-left: -10px;
 
 }
 
