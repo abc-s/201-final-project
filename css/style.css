@@ -207,6 +207,17 @@ flex-shrink: 1;
 /* ---------------------------------------------------------------------------------------------------- */
 /* Specific to lists.html */
 
+#list-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
 #list-page .flex-container {
     display: flex;
     flex-direction: column;
@@ -304,25 +315,32 @@ flex-shrink: 1;
 
     display: flex;
     flex-direction: column;
-    flex: 1;
+    /* flex: 1; */
     align-items: stretch;
+    justify-content: flex-start;
 }
-#list-page section ul {
+#incomplete-list {
+    flex: 2;
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    left: 0; */
+}
+#complete-list {
+    flex: 1;
 
 }
 
 
 #list-page section ul li {
-    border: 2px dashed blue;
+    border: 6px dashed yellowgreen;
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
-#list-page section ul li:hover {
-    background: green;
-}
+
 
 #list-page section ul li label {
     display: flex;
@@ -360,7 +378,7 @@ flex-shrink: 1;
     border: none;
     /* background: #ffffff; */
     background: none;
-    color: red;
+    color: black;
     border: 5px solid transparent;
     outline: none;
     /* margin: 9px; */
@@ -369,7 +387,8 @@ flex-shrink: 1;
 #list-page label button:nth-child(3) {
     /* width: 100%; */
 
-    border: 2px dashed blue;
+    border: 2px dashed mediumaquamarine;
+    background: pink;
     flex: 1;
 
     /* margin: 9px; */
@@ -378,4 +397,9 @@ flex-shrink: 1;
 
 .complete-list {
     font-style: unset
+}
+
+#list-page section ul li:hover + .complete-list {
+    background: gray;
+    display: block;
 }
