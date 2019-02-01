@@ -34,10 +34,16 @@ function renderListName() {
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
 function handleAddTask(event) {
+  console.log(event.target);
   event.preventDefault();
-  var userText = textInputElement.value; // get the user input
-  List.allLists[0].addTask(userText);    // create a task with the user input
-  List.allLists[0].renderTasks();        // invokes list method that clears page and renders all tasks as li's
+  console.log('input valid:', textInputElement.checkValidity());
+  if(textInputElement.checkValidity()){
+    var userText = textInputElement.value; // get the user input
+    List.allLists[0].addTask(userText);    // create a task with the user input
+    List.allLists[0].renderTasks();        // invokes list method that clears page and renders all tasks as li's
+  } else {
+    textInputElement.reportValidity();
+  }
 }
 
 // EVENT HANDLER FOR 'REMOVED TASK' BUTTON CLICK
