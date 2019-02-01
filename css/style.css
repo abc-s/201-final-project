@@ -7,20 +7,6 @@ font-family: 'Open Sans', sans-serif;
 Color palette:
 https://coolors.co/f6f8fa-24292d-e1e4e7-3f4447-f5f7f9
 
-ghost white
-#F6F8FA
-
-white smoke
-#F5F7F9
-
-platinum
-#E1E4E7
-
-arsenic
-#3F4447
-
-charleston green
-#24292D
 
 */
 
@@ -331,10 +317,9 @@ flex-shrink: 1;
     border-bottom: 3px solid #3F4447;
 
     flex-grow: 1;
-  
+
     overflow: auto;
 
-    /* for Firefox */
     min-height: 0;
 }
 #complete-list {

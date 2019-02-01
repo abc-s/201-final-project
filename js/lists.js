@@ -50,10 +50,9 @@ function handleAddTask(event) {
 function handleDeleteTask(event) {
   console.log(event);
   if(event.target.id === 'delete-button' || event.target.id === ('delete-button-image')){
-    //console.log('deletetask event fired');
+   
     event.preventDefault();
-    //console.log(event);
-    //console.log(event.target);
+
     var taskName = event.target.parentNode.previousSibling.value;
     console.log(taskName);
 
@@ -63,19 +62,7 @@ function handleDeleteTask(event) {
       }
     }
 
-    // var removed = event.target.removed;
-    // if (removed) {
-    //   for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
-    //     if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
-    //       List.allLists[0].taskList[i].removed = true;              // Changes the task object's property to 'checked'
-    //       console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].removed);
-    //       List.allLists[0].taskList[i].textContent = '';
-    //       break;
-    //     }
-    //   }
-    // } else {
-    //   console.log("clicked removed but not possible");
-    // }
+
     removeListsFromLocalStorage();
     saveListsToLocalStorage();
     renderOnPageLoad();
