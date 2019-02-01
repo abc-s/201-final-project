@@ -153,6 +153,10 @@ form input {
     left: 0;
 }
 
+.about-body h1 {
+    font-size: 5vw;
+}
+
 .team-list {
 display: flex;
 flex-wrap: wrap;
@@ -184,10 +188,32 @@ flex-shrink: 1;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 1;
+    margin-left: 20px;
 }
 
 .team-list li section > h2 {
     font-weight: bold;
+    font-size: 110%;
+    padding-bottom: 3px;
+}
+
+.team-list li a {
+    text-decoration: none;
+    color: #3F4447;
+    /* font-size: 150%: */
+}
+.team-list li a:hover {
+    text-decoration: underline;
+}
+
+.about-body footer a {
+    margin-bottom: 30px;
+    /* line-height: 200%; */
+}
+.about-body footer a:hover {
+    /* line-height: 200%; */
+    text-decoration: underline;
+
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
