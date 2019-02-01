@@ -34,20 +34,26 @@ function renderListName() {
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
 function handleAddTask(event) {
+  console.log(event.target);
   event.preventDefault();
-  var userText = textInputElement.value; // get the user input
-  List.allLists[0].addTask(userText);    // create a task with the user input
-  List.allLists[0].renderTasks();        // invokes list method that clears page and renders all tasks as li's
+  console.log('input valid:', textInputElement.checkValidity());
+  if(textInputElement.checkValidity()){
+    var userText = textInputElement.value; // get the user input
+    List.allLists[0].addTask(userText);    // create a task with the user input
+    List.allLists[0].renderTasks();        // invokes list method that clears page and renders all tasks as li's
+  } else {
+    textInputElement.reportValidity();
+  }
 }
 
 // EVENT HANDLER FOR 'REMOVED TASK' BUTTON CLICK
 function handleDeleteTask(event) {
-  if(event.target.id === 'delete-button'){
-    //console.log('deletetask event fired');
+  console.log(event);
+  if(event.target.id === 'delete-button' || event.target.id === ('delete-button-image')){
+   
     event.preventDefault();
-    //console.log(event);
-    //console.log(event.target);
-    var taskName = event.target.previousSibling.value;
+
+    var taskName = event.target.parentNode.previousSibling.value;
     console.log(taskName);
 
     for(var i=0; i < List.allLists[0].taskList.length; i++){
@@ -56,19 +62,7 @@ function handleDeleteTask(event) {
       }
     }
 
-    // var removed = event.target.removed;
-    // if (removed) {
-    //   for (var i = 0; i < List.allLists[0].taskList.length; i++) {  // Loops through all the tasks
-    //     if (List.allLists[0].taskList[i].userText === taskName) {   // Finds the targeted task
-    //       List.allLists[0].taskList[i].removed = true;              // Changes the task object's property to 'checked'
-    //       console.log(List.allLists[0].taskList[i].userText, 'changed checked to', List.allLists[0].taskList[i].removed);
-    //       List.allLists[0].taskList[i].textContent = '';
-    //       break;
-    //     }
-    //   }
-    // } else {
-    //   console.log("clicked removed but not possible");
-    // }
+
     removeListsFromLocalStorage();
     saveListsToLocalStorage();
     renderOnPageLoad();
