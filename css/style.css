@@ -354,15 +354,22 @@ flex-shrink: 1;
     padding: .4vw 0;
     background: none;
 }
+/* .list-page li:hover + .list-page label button {
+    display: block;
+} */
+
 
 .list-page label input:first-child {
     flex-grow: 1 0 auto;
+    -webkit-transform: scale(2.5);
+    margin: auto;
 }
 .list-page label input:nth-child(2) {
     flex-grow: 2 0 auto;
     width: 100%;
     font-size: 2vw;
     padding: 0 .4vw;
+    margin-left: 1vw;
     border-radius: 20vw;
     background: #ffffff;
     color: #3F4447;
@@ -383,4 +390,8 @@ flex-shrink: 1;
 
 .list-page label button {
     flex-grow: 1 0 auto;
+    background: none;
+    border: none;
+    margin: auto;
+    /* display: none; */
 }
