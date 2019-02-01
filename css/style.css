@@ -207,199 +207,180 @@ flex-shrink: 1;
 /* ---------------------------------------------------------------------------------------------------- */
 /* Specific to lists.html */
 
-#list-page {
+.list-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
+    height: 100%;
 }
 
-#list-page .flex-container {
+.list-page .flex-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+.flex-container header {
+    flex-shrink: 0;
+}
+.flex-container .content-flex-container {
+    flex: 1 0 auto;
+}
+.flex-container footer {
+    flex-shrink: 0;
 }
 
-#list-page .flex-container > * {
-    /* border: 5px solid yellow; */
-}
-
-#list-page main {
-    /* border: 5px solid red; */
+.content-flex-container {
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
+    padding: 0 100px;
 }
-#list-page main > * {
-    /* border: 5px dashed yellow; */
+.list-page h1 {
     width: 100%;
-}
-
-#list-page h1 {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    flex: 2 auto 50px;
-    font-size: 5vw;
-
+    align-items: center; 
+    background: none;
+    border-radius: 20vw;
 }
-#list-page h1 input {
+
+.list-page h1 input {
     width: 100%;
-    /* display: block; */
-    /* background: red; */
-    /* flex: 1; */
-    /* padding: 20px 0; */
     border: none;
-    /* background: lightblue; */
+    border-radius: 20vw;
+
+    border: 5px solid transparent;
+    background: transparent;
     font-family: 'Noto Sans SC', sans-serif;
     text-align: center;
-    flex: 1 auto 100px;
-    font-size: 10vw;
+    font-size: 3.6vw;
+    
+
+}
+.list-page h1:hover {
+    background: #FFD0D0;
+    border-radius: 20vw;
+
+}
+.list-page h1 input:focus, .list-page h1 input::selection {
+    background: #FFD0D0;
+    border-radius: 20vw;
+
 }
 
-#list-page form {
+.content-flex-container form {
     display: flex;
     flex-direction: row;
-    flex: 1 auto 50px;
-}
-#list-page form input {  
-    flex: 5;
-    font-size: 3vw;
-    line-height: 100%;
-    padding: auto 0 auto 2vw;
+    justify-content: flex-start;
     width: 100%;
-    /* padding: .8vw 1vw .8vw 2vw; */
-    /* font-size: 4vw; */
-    border: none;
+}
+.content-flex-container form input {
+    font-size: 2.5vw;
+    padding: .2vw 0 0.2vw 2vw;
+    flex: 5 0 auto;
+    border-radius: 20vw;
     background: #ffffff;
     color: red;
-    border: 5px solid transparent;
+    border: 3px solid transparent;
     outline: none;
 }
-#list-page form button {
-    width: 0;
-    flex: 1 auto;
-
-    /* padding: 1vw; */
+.content-flex-container form input:focus {
+    border: 3px solid red;
+    background: #FFD0D0;
+}
+.content-flex-container form button {
+    flex: 1 0 auto;
+    width: 2vw;
     background: none;
-    /* outline: none; */
     border: none;
-    border-radius: 100%;
 }
-#list-page form button img {
-    /* border-radius: 100%; */
+.content-flex-container image {
+    width: 2vw;
 }
 
-#list-page section {
-    /* border: 3px dotted magenta; */
-    flex: 10;
-
+.content-flex-container main  {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-#list-page section > * {
-    /* border: 2px dashed gold; */
+.container {
+    /* background: #3F51B5; */
+    flex: 1 0 auto;
+    /* give the outermost container a predefined size */
+    position: relative;
+    width: 600px;
+    
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-#list-page section ul {
-    border: 5px dashed magenta;
-
+.section {
+    margin: 10px;
+    flex-grow: 1;
+    
     display: flex;
     flex-direction: column;
-    /* flex: 1; */
-    align-items: stretch;
-    justify-content: flex-start;
+    
+    /* for Firefox */
+    min-height: 0;
+
 }
 #incomplete-list {
-    flex: 2;
-    /* position: absolute; */
-    /* top: 0;
-    bottom: 0;
-    left: 0; */
+    /* border: 6px dashed magenta; */
+    border-top: 3px solid #3F4447;
+    border-bottom: 3px solid #3F4447;
+
+    flex-grow: 1;
+  
+    overflow: auto;
+
+    /* for Firefox */
+    min-height: 0;
 }
 #complete-list {
-    flex: 1;
-
+    flex-grow: 1;
 }
 
-
-#list-page section ul li {
-    border: 6px dashed yellowgreen;
-    display: flex;
-    /* flex: 1; */
-    flex-direction: row;
-    align-items: stretch;
-}
-
-
-
-#list-page section ul li label {
+.list-page li {
     display: flex;
     flex-direction: row;
-    flex: 1;
-    align-items: stretch;
-        border: 2px dashed gold;
-    background: none;
-
 }
 
-#list-page section ul li label > * {
-    /* border: 2px dashed gold; */
-    background: none;
-
-}
-
-#list-page section ul li label input:first-child {
-    /* border: 2px dashed gold; */
-    flex: 1;
-
-}
-
-
-
-#list-page label input:nth-child(2) {
-    border: 2px dashed red;
-    flex: 10;
-    font-size: 3vw;
-    line-height: 100%;
-    padding: auto 0 auto 2vw;
+.list-page label {
+    display: flex;
     width: 100%;
-    /* padding: .8vw 1vw .8vw 2vw; */
-    /* font-size: 4vw; */
-    border: none;
-    /* background: #ffffff; */
-    background: none;
-    color: black;
-    border: 5px solid transparent;
-    outline: none;
-    /* margin: 9px; */
-}
-
-#list-page label button:nth-child(3) {
-    /* width: 100%; */
-
-    border: 2px dashed mediumaquamarine;
-    background: pink;
+    flex-direction: row;
     flex: 1;
-
-    /* margin: 9px; */
+    padding: .4vw 0;
+    background: none;
 }
 
-
-.complete-list {
-    font-style: unset
+.list-page label input:first-child {
+    flex-grow: 1 0 auto;
+}
+.list-page label input:nth-child(2) {
+    flex-grow: 2 0 auto;
+    width: 100%;
+    font-size: 2vw;
+    padding: 0 .4vw;
+    border-radius: 20vw;
+    background: #ffffff;
+    color: #3F4447;
+    border: 3px solid transparent;
+    outline: none;
+}
+.list-page label input:nth-child(2):focus {
+    border: 3px solid red;
+    background: #FFD0D0;
 }
 
-#list-page section ul li:hover + .complete-list {
-    background: gray;
-    display: block;
+#complete-list input {
+    background: #ffffff;
+    opacity: .4;
+    text-decoration: line-through;
+    color: #3F4447;
+}
+
+.list-page label button {
+    flex-grow: 1 0 auto;
 }
