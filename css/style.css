@@ -344,6 +344,7 @@ flex-shrink: 1;
 .list-page li {
     display: flex;
     flex-direction: row;
+    padding-left: 10px;
 }
 
 .list-page label {
