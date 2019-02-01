@@ -201,3 +201,22 @@ flex-shrink: 1;
 .team-list li section > h2 {
     font-weight: bold;
 }
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Specific to about.html */
+
+#list-page .flex-container > * {
+    /* border: 5px solid yellow; */
+}
+
+#list-page main {
+    border: 5px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#list-page main > * {
+    border: 5px solid yellow;
+
+}
