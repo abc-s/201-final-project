@@ -29,14 +29,14 @@ List.prototype.renderTasks = function () {
   completeUlElement.innerHTML = '';
   // Loop through the tasks of a list
   for (var i = 0; i < this.taskList.length; i++) {
-    var newLi = this.taskList[i].createLi();      // create a li for each task 
-    if (this.taskList[i].checked === false) {     // if the task isn't checked, append the 'incomplete' ul
+    var newLi = this.taskList[i].createLi();      // create li for each task 
+    if (this.taskList[i].checked === false) {     // if task isn't checked, append 'incomplete' ul
       incompleteUlElement.appendChild(newLi);
-    } else {                                      // if the task is checked, append the 'complete' ul
+    } else {                                      // if task is checked, append 'complete' ul
       completeUlElement.appendChild(newLi);
     }
   }
-  removeListsFromLocalStorage();  // clear the old list from local storage
+  removeListsFromLocalStorage();  // clear old list from local storage
   saveListsToLocalStorage();      // add the new list to local storage
   textInputElement.value = '';
 };
@@ -47,7 +47,6 @@ function Task(userText, checked, editing, removed) {
   this.checked = checked;
   this.editing = editing;
   this.removed = removed;
-  // console.log('created new Task instance');
 }
 
 // TASK PROTOTYPE FUNCTION - creates HTML elements for each task
@@ -71,6 +70,8 @@ Task.prototype.createLi = function () {
   textInputElement.value = this.userText; // Puts user input into textInput element
   textInputElement.disabled = true;       // Makes textInput element uneditable
   textInputElement.required = true;       // Add 'required' attribute to task input element for form validation
+  
+  // Add delete button image
   deleteButtonElement.innerHTML = '<img src="img/delete-button-svgrepo-com.svg" alt="image" id="delete-button" width="30">';        // no text inside the button
   deleteButtonElement.id = 'delete-button';
 
@@ -85,7 +86,7 @@ Task.prototype.createLi = function () {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// Ordered with a stepdown approach. Higher level functions are on top and lower levels below.
+// Ordered with a stepdown approach. Higher-level functions are on top and lower levels below.
 
 // Saves all Lists to local storage
 function saveListsToLocalStorage() {
@@ -102,8 +103,7 @@ function getListsFromLocalStorage() {
   var retrievedLists = JSON.parse(localStorage.getItem('List.allLists'));
   var storedListTitle = retrievedLists[0].listTitle;
   var storedListTaskArray = [];
-  // Loops through parsed taskList and re-constructs each task
-  // (Each parsed Task lost its 'Task' class, so they have no prototype methods. By creating new instances, they keep their 'Task' class)
+  // Loops through parsed taskList and re-constructs each task so it retains its 'Task' class and associated prototype methods
   for (var i = 0; i < retrievedLists[0].taskList.length; i++) {
     var reconstructedList = new Task(retrievedLists[0].taskList[i].userText, retrievedLists[0].taskList[i].checked, retrievedLists[0].taskList[i].editing, retrievedLists[0].taskList[i].removed);
     storedListTaskArray.push(reconstructedList);
@@ -113,7 +113,3 @@ function getListsFromLocalStorage() {
     new List(storedListTitle, storedListTaskArray);
   }
 }
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// FUNCTION INVOCATIONS
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
