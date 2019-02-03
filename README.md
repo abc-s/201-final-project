@@ -1,4 +1,4 @@
-# ListApp - 201-final-project
+# Cheko✔ - 201-final-project
 
 This repo is for our team's Code 201 final project, Cheko✔ (Chekov). 
 
