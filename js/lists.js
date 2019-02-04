@@ -34,10 +34,8 @@ function renderListName() {
 
 // EVENT HANDLER FOR 'ADD TASK' BUTTON CLICK
 function handleAddTask(event) {
-  console.log(event.target);
   event.preventDefault();
-  console.log('input valid:', textInputElement.checkValidity());
-  if(textInputElement.checkValidity()){
+  if (textInputElement.checkValidity()) {
     var userText = textInputElement.value; // get the user input
     List.allLists[0].addTask(userText);    // create a task with the user input
     List.allLists[0].renderTasks();        // invokes list method that clears page and renders all tasks as li's
@@ -48,20 +46,17 @@ function handleAddTask(event) {
 
 // EVENT HANDLER FOR 'REMOVED TASK' BUTTON CLICK
 function handleDeleteTask(event) {
-  console.log(event);
-  if(event.target.id === 'delete-button' || event.target.id === ('delete-button-image')){
+  if (event.target.id === 'delete-button' || event.target.id === ('delete-button-image')) {
    
     event.preventDefault();
 
     var taskName = event.target.parentNode.previousSibling.value;
-    console.log(taskName);
 
-    for(var i=0; i < List.allLists[0].taskList.length; i++){
-      if(List.allLists[0].taskList[i].userText === taskName){
+    for (var i=0; i < List.allLists[0].taskList.length; i++) {
+      if (List.allLists[0].taskList[i].userText === taskName) {
         List.allLists[0].taskList.splice(i, 1);
       }
     }
-
 
     removeListsFromLocalStorage();
     saveListsToLocalStorage();
@@ -102,10 +97,9 @@ function handleCheckboxChange(event) {
 // 'ADD TASK' BUTTON CLICK EVENT LISTENER
 addTaskButtonElement.addEventListener('click', handleAddTask);
 
-
 // HANDLES DOUBLE-CLICKING A LIST TITLE
 function handleEditListTitle(event) {
-  event.target.disabled = false; // Makes the list title editable
+  event.target.disabled = false;                // Makes the list title editable
 }
 
 // HANDLES CLICKING AWAY FROM LIST TITLE
@@ -133,7 +127,6 @@ function handleEditTaskBlur(event) {
   event.target.disabled = true;
   var newEditedTaskValue = event.target.value;                             // Grabs the new task content from the page
   if (lastEditedTaskValue !== newEditedTaskValue) {                        // Runs the rest of the function only if task value changed
-    console.log('content changed');
     for (var i = 0; i < List.allLists[0].taskList.length; i++) {           // Loops through all the tasks
       if (List.allLists[0].taskList[i].userText === lastEditedTaskValue) { // Finds the targeted task
         List.allLists[0].taskList[i].userText = newEditedTaskValue;        // Changes the task object's userText to the new value
