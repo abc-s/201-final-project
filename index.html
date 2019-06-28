@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 
 <html>
+  <head>
+    <title>Chekov</title>
+    <!-- <link rel="stylesheet" href="css/reset.css" /> -->
+  </head>
 
-<head>
-    <title>CHEKO&#10003;</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:500|Open+Sans" rel="stylesheet">
-</head>
-
-<body>
-    <div class="flex-container">
-        <header>
-            <a id="" href="index.html" title="">cheko<span>&#10003;</span></a>
-        </header>
-        <main>
-            <h1 id="name-list">name your list</h1>
-            <form autocomplete="off">
-                <input id="new-title" type="text" required>
-                <input type="image" id="add-list" title="Click to submit" src="img/plus-svgrepo-com.svg" width="80">
-            </form>
-        </main>
-        <footer>
-            <a href="about.html" title="">
-                <img src="img/about-us-svgrepo-com (2).svg" alt="image" width="80">
-            </a>
-        </footer>
-    </div>
-    <script src="js/app.js" contenteditable="false"></script>
-    <script src="js/add-list.js"></script>
-</body>
-
+  <body>
+    <header>
+      <a id="" href="index.html" title="">Chekov</a>
+      <nav>
+        <ul>
+          <li><a href="#">Lists</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <form autocomplete="off">
+        <h3>Create list</h3>
+        <label for="new-list">List name:</label>
+        <input id="new-list" type="text" required />
+        <input type="submit" value="Add list" />
+      </form>
+      <aside>
+        <h3>Lists</h3>
+        <ul id="lists">
+          <li>List one</li>
+          <li>List two</li>
+        </ul>
+      </aside>
+    </main>
+    <footer>
+      <p>&copy; 2019 Billy Bunn</p>
+    </footer>
+    <!-- <script src="js/app.js" contenteditable="false"></script> -->
+    <!-- <script src="js/add-list.js"></script> -->
+    <script src="js/app-new.js"></script>
+  </body>
 </html>
