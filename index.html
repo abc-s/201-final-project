@@ -18,17 +18,17 @@
     </header>
     <main>
 
-      <form id="new-list-form" autocomplete="off">
+      <form id="add-list-form" autocomplete="off">
         <h3>Create list</h3>
-        <label for="new-list-name">List name:</label>
-        <input id="new-list-name" type="text" required />
+        <label for="new-list-input">List name:</label>
+        <input id="new-list-input" type="text" required />
         <input type="submit" value="Add list" />
       </form>
 
       <aside>
         <h3>Lists</h3>
         <button id="clear-lists-button">Clear lists</button>
-        <ul id="lists">
+        <ul id="lists-ul">
         </ul>
       </aside>
 
@@ -38,6 +38,7 @@
     </footer>
     <!-- <script src="js/app.js" contenteditable="false"></script> -->
     <!-- <script src="js/add-list.js"></script> -->
-    <script src="js/app-new.js"></script>
+    <script type="module" src="js/elements.js"></script>
+    <script type="module" src="js/app-new.js"></script>
   </body>
 </html>
