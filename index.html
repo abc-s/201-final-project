@@ -17,19 +17,21 @@
       </nav>
     </header>
     <main>
-      <form autocomplete="off">
+
+      <form id="new-list-form" autocomplete="off">
         <h3>Create list</h3>
-        <label for="new-list">List name:</label>
-        <input id="new-list" type="text" required />
+        <label for="new-list-name">List name:</label>
+        <input id="new-list-name" type="text" required />
         <input type="submit" value="Add list" />
       </form>
+
       <aside>
         <h3>Lists</h3>
+        <button id="clear-lists-button">Clear lists</button>
         <ul id="lists">
-          <li>List one</li>
-          <li>List two</li>
         </ul>
       </aside>
+
     </main>
     <footer>
       <p>&copy; 2019 Billy Bunn</p>
