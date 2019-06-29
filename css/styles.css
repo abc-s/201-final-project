@@ -4,6 +4,7 @@ header {
   padding: 0.5em 0;
 }
 header > nav > ul > li a {
+  color: inherit;
   text-decoration: none;
 }
 header > nav > ul > li a:visited {
