@@ -1,6 +1,7 @@
 'use strict';
 
 import { listItem } from './elements.js';
+import List from './list.js';
 
 class Checkov {
   constructor(
@@ -41,7 +42,7 @@ class Checkov {
   }
   addList(list) {
     if (!this.lists.has(list)) {
-      this.lists.set(list);
+      this.lists.set(list, new List(list, []));
       this.setCurrentList(list);
       this.saveLocalStorage();
     } else {
@@ -84,7 +85,13 @@ class Checkov {
     }
 
     // Current list section ----------
-    this.currentListName.innerHTML = this.currentList;
+    if (this.currentList) {
+      let current = new List(
+        this.currentList,
+        this.lists.get(this.currentList).tasks
+      );
+      current.render();
+    }
   }
 }
 
