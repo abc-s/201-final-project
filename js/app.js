@@ -42,7 +42,15 @@ class Checkov {
   }
   addList(list) {
     if (!this.lists.has(list)) {
-      this.lists.set(list, new List(list, []));
+      this.lists.set(
+        list,
+        new List(
+          list,
+          {},
+          this.fetchLocalStorage.bind(this),
+          this.saveLocalStorage.bind(this)
+        )
+      );
       this.setCurrentList(list);
       this.saveLocalStorage();
     } else {
@@ -59,8 +67,10 @@ class Checkov {
   }
 
   render() {
-    // Lists and add list form in aside ----------
+    // Always retrieve data from local storage
     this.fetchLocalStorage();
+
+    // on submit/click event handlers
     this.addListForm.onsubmit = e => {
       e.preventDefault();
       this.addList(this.newListInput.value);
@@ -72,10 +82,14 @@ class Checkov {
       this.clearLists();
       this.render();
     };
-    // clear and fill lists ul
+
+    // clear
     this.listsUl.innerHTML = '';
+
+    // fill
     for (let list of this.lists.keys()) {
       let li = listItem(list);
+      // set current list event
       li.onclick = e => {
         e.preventDefault();
         this.setCurrentList(e.target.innerText);
@@ -86,11 +100,16 @@ class Checkov {
 
     // Current list section ----------
     if (this.currentList) {
-      let current = new List(
-        this.currentList,
-        this.lists.get(this.currentList).tasks
-      );
-      current.render();
+      // console.log(this.lists.get(this.currentList));
+      const {name, tasks} = this.lists.get(this.currentList);
+      // console.log(this.lists);
+
+      new List(
+        name,
+        tasks,
+        this.fetchLocalStorage.bind(this),
+        this.saveLocalStorage.bind(this)
+      ).render();
     }
   }
 }
