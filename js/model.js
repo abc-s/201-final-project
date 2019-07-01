@@ -21,6 +21,8 @@ export default class Model {
     this.saveLocalStorage = lists => {
       localStorage.setItem(name, JSON.stringify(lists));
     };
+
+    this.lists = [new List('one'), new List('two'), new List('three')];
   }
 
   getList(list) {
