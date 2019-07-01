@@ -1,21 +1,10 @@
 'use strict';
 
-// const localStorage = window.localStorage;
-// function fetchLocalStorage(name) {
-//   return JSON.parse(localStorage.getItem(name));
-// }
-// function saveLocalStorage(name, lists) {
-//   localStorage.setItem(name, JSON.stringify(lists));
-// }
-
 export default class Model {
   constructor(name) {
-    // this.fetchLocalStorage = () => fetchLocalStorage(name).bind(this);
-    // this.saveLocalStorage = lists => saveLocalStorage(name, lists).bind(this);
-
     const localStorage = window.localStorage;
     this.fetchLocalStorage = () => {
-      return JSON.parse(localStorage.getItem(name));
+      return JSON.parse(localStorage.getItem(name)) || {};
     };
 
     this.saveLocalStorage = lists => {
@@ -23,6 +12,10 @@ export default class Model {
     };
 
     this.lists = [new List('one'), new List('two'), new List('three')];
+  }
+
+  getLists() {
+    return this.fetchLocalStorage();
   }
 
   getList(list) {
