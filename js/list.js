@@ -16,30 +16,50 @@ class Task {
     // add attributes
     textInputEl.type = 'text';
     textInputEl.value = this.name;
-    textInputEl.disabled = true;
+    textInputEl.disabled = !this.editing;
     textInputEl.required = true;
+    textInputEl.style.pointerEvents = 'none';
     checkboxInputEl.type = 'checkbox';
     checkboxInputEl.checked = this.completed ? true : false;
     checkboxInputEl.value = this.name;
     checkboxInputEl.checked = this.completed;
     deleteButtonEl.innerHTML = 'delete';
     // add event handlers
-    checkboxInputEl.onchange = e => {
+    const handleCheckboxChange = e => {
+      console.log('click', e.detail);
+
       e.preventDefault();
       this.checkOffTask(this.name);
       this.render();
     };
+    checkboxInputEl.addEventListener('change', handleCheckboxChange);
+    // checkboxInputEl.onclick = e => {
+    //   e.preventDefault();
+    //   this.checkOffTask(this.name);
+    //   this.render();
+    // };
+    const handleDoubleClick = e => {
+      console.log('doubel click');
+      e.preventDefault();
+      this.checkOffTask(this.name);
+      this.editing = true;
+      this.render();
+    };
+    checkboxInputEl.addEventListener('dblclick', handleDoubleClick);
+    // labelEl.ondblclick = e => {
+    //   console.log('ondblclick');
+    //   e.preventDefault();
+    //   this.checkOffTask(this.name);
+    //   this.editing = true;
+    //   this.render();
+    // };
+    // ondblclick
 
     // assemble
     labelEl.append(checkboxInputEl);
     labelEl.append(textInputEl);
-    // labelEl.append(this.name);
-
-
     liElement.append(labelEl);
-    // liElement.append(textInputEl);
-    if(this.completed) liElement.append(deleteButtonEl);
-
+    if (this.completed) liElement.append(deleteButtonEl);
     liElement.class = this.completed ? 'complete' : 'incomplete';
 
     return liElement;
@@ -72,6 +92,10 @@ export default class List {
     this.saveLocalStorage();
     this.render();
   }
+  editTask(task) {
+    this.tasks[task].editing = true;
+    this.render();
+  }
 
   render() {
     // this.fetchLocalStorage();
@@ -88,7 +112,12 @@ export default class List {
     this.completedListUl.innerHTML = '';
     for (let taskName of Object.keys(this.tasks)) {
       const { name, completed, editing } = this.tasks[taskName];
-      this.tasks[taskName] = new Task(name, this.checkOffTask.bind(this), completed, editing);
+      this.tasks[taskName] = new Task(
+        name,
+        this.checkOffTask.bind(this),
+        completed,
+        editing
+      );
 
       let taskEl = this.tasks[taskName].render();
       this.tasks[taskName].completed
