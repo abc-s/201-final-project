@@ -16,16 +16,15 @@ export default class Controller {
   }
 
   addList(listName) {
-    // update the model (and localStorage)
-    this.model.addList(listName);
-    // update the view
+    let listId = this.model.addList(listName);
     this.view.clearListsAddForm();
     this.view.renderLists(this.lists());
+    this.selectList(listId);
   }
 
   deleteList(listId) {
     this.model.deleteList(listId);
-    this.view.renderLists(this.lists());
+    this.view.renderLists(this.lists(), this.currentList());
   }
 
   selectList(listId) {

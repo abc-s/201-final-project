@@ -28,7 +28,7 @@ export default class Model {
   getCurrentList() {
     return (
       this.fetchLocalStorage().currentList || {
-        name: 'pick a list',
+        name: 'Select or create a list',
         tasks: [],
         id: 0
       }
@@ -46,6 +46,7 @@ export default class Model {
     let list = new List(listName);
     lists[list.id] = list;
     this.saveLocalStorage({ lists, currentList: list });
+    return list.id;
   }
 
   updateList(list, update) {
@@ -57,7 +58,8 @@ export default class Model {
   deleteList(listId) {
     let lists = this.getLists();
     delete lists[listId];
-    this.saveLocalStorage({ lists, currentList: this.data.currentList });
+    console.log(lists[Object.keys(lists)[0]])
+    this.saveLocalStorage({ lists, currentList: lists[Object.keys(lists)[0]] });
   }
 
   addTask(list, taskDesc) {
@@ -103,29 +105,5 @@ class List {
     this.name = name;
     this.tasks = [];
     this.complete = false;
-  }
-
-  getTask(taskId) {
-    let results = this.tasks.filter(task => task.id === taskId);
-    if (results.length > 1) return results;
-    if (results.length <= 1) return results[0];
-  }
-
-  addTask(taskDescription) {
-    this.tasks.push(new Task(taskDescription));
-  }
-
-  updateTask(taskId, update) {
-    this.tasks = this.tasks.reduce((list, task) => {
-      if (task.id === taskId) {
-        task[update] = update;
-        // task = { ...task, update };
-      }
-      list.push(task);
-    }, []);
-  }
-
-  deleteTask(taskId) {
-    this.tasks = this.tasks.filter(task => task.id !== taskId);
   }
 }
