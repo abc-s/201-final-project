@@ -69,8 +69,10 @@ export default class Model {
   completeTask(list, taskId) {
     let lists = this.getLists();
     let idx = list.tasks.findIndex(task => task.id === taskId);
-    list.tasks[idx].complete = !list.tasks[idx].complete;
-    this.saveLocalStorage({ lists, currentList: list });
+    // list.tasks[idx].complete = !list.tasks[idx].complete;
+    // console.log(list.id);
+    lists[list.id].tasks[idx].complete = !lists[list.id].tasks[idx].complete;
+    this.saveLocalStorage({ lists, currentList: lists[list.id] });
   }
 }
 

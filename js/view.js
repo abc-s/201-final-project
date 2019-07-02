@@ -36,7 +36,7 @@ export default class View {
       return (
         html +
         `
-<li id=${id} class="task-li ${complete ? ''}">
+<li id=${id} class="task-li ${complete ? 'completed' : ''}">
   <input type="checkbox" ${complete ? 'checked' : ''}/>
   <input type="text" value="${description}" readonly />
   <button class="delete-task-button">delete</button>

@@ -19,6 +19,11 @@ main > section > h2 {
   text-align: center;
 }
 
+li.completed > input {
+  color: grey;
+  text-decoration: line-through;
+}
+
 /* ----- Aside ----- */
 main > aside {
   display: flex;
