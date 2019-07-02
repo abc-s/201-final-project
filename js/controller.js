@@ -12,6 +12,7 @@ export default class Controller {
     view.selectList(this.selectList.bind(this));
     view.addTask(this.addTask.bind(this));
     view.completeTask(this.completeTask.bind(this));
+    view.saveEditTask(this.saveEditTask.bind(this));
   }
 
   addList(listName) {
@@ -40,6 +41,11 @@ export default class Controller {
 
   completeTask(taskId) {
     this.model.completeTask(this.currentList(), taskId);
+    this.view.renderTasks(this.currentList());
+  }
+
+  saveEditTask(taskId, newTaskDesc) {
+    this.model.saveEditTask(this.currentList(), taskId, newTaskDesc);
     this.view.renderTasks(this.currentList());
   }
 

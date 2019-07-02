@@ -1,7 +1,5 @@
 'use strict';
 
-// import Model from './model';
-
 export default class View {
   constructor() {
     this.listsAddForm = document.querySelector('#add-list-form');
@@ -11,9 +9,11 @@ export default class View {
 
     this.currentListName = document.querySelector('#list-name');
     this.activeListUl = document.querySelector('#active-list');
-    // this.completeListUl = document.querySelector('#complete-list');
+    this.completeListUl = document.querySelector('#complete-list');
     this.addTaskForm = document.querySelector('#add-task-form');
     this.addTaskInputEl = document.querySelector('#new-task-input');
+
+    this.taskInputs = document.querySelectorAll('.task-input');
   }
   createListsHTML(lists) {
     let listsArr = Object.entries(lists);
@@ -38,7 +38,9 @@ export default class View {
         `
 <li id=${id} class="task-li ${complete ? 'completed' : ''}">
   <input type="checkbox" ${complete ? 'checked' : ''}/>
-  <input type="text" value="${description}" readonly />
+  <input type="text" value="${description}" class="task-input" ${
+          !editing ? 'readonly' : ''
+        } ${!editing ? 'disabled' : ''}/>
   <button class="delete-task-button">delete</button>
 </li>
       `
@@ -83,11 +85,37 @@ export default class View {
   }
 
   completeTask(handler) {
+    const checkboxChangeOnTasks = element => {
+      element.addEventListener('change', e => {
+        if (e.target.type === 'checkbox') {
+          const liEls = element.querySelectorAll('.task-li');
+          for (let i = 0; i < liEls.length; i++) {
+            if (liEls[i] === e.target.parentNode) {
+              return handler(e.target.parentNode.id);
+            }
+          }
+        }
+      });
+    };
+    checkboxChangeOnTasks(this.activeListUl);
+    checkboxChangeOnTasks(this.completeListUl);
+    /*
     this.activeListUl.addEventListener('change', e => {
       const taskLis = this.activeListUl.querySelectorAll('.task-li');
       for (let i = 0; i < taskLis.length; i++) {
         if (taskLis[i] === e.target.parentNode)
           return handler(e.target.parentNode.id);
+      }
+    });
+    */
+  }
+
+  saveEditTask(handler) {
+    this.activeListUl.addEventListener('focusout', e => {
+      let taskInputs = document.querySelectorAll('.task-input');
+      for (let i = 0; i < taskInputs.length; i++) {
+        if (taskInputs[i] === e.target)
+          handler(e.target.parentNode.id, e.target.value);
       }
     });
   }
@@ -101,6 +129,32 @@ export default class View {
   }
   renderTasks(currentList) {
     this.currentListName.innerHTML = currentList.name;
-    this.activeListUl.innerHTML = this.createTasksHTML(currentList.tasks);
+    let tasks = currentList.tasks.reduce(
+      (acc, task) => {
+        task.complete
+          ? acc.completeTasks.push(task)
+          : acc.activeTasks.push(task);
+        return acc;
+      },
+      {
+        activeTasks: [],
+        completeTasks: []
+      }
+    );
+    let { activeTasks, completeTasks } = tasks;
+    this.activeListUl.innerHTML = this.createTasksHTML(activeTasks);
+    // for dblclick events on active tasks
+    this.activeListUl.addEventListener('dblclick', e => {
+      const taskLis = this.activeListUl.querySelectorAll('.task-li');
+      for (let i = 0; i < taskLis.length; i++) {
+        if (taskLis[i] === e.target.parentNode) {
+          e.target.disabled = false;
+          e.target.readOnly = false;
+          e.target.focus();
+          return;
+        }
+      }
+    });
+    this.completeListUl.innerHTML = this.createTasksHTML(completeTasks);
   }
 }

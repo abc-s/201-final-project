@@ -69,9 +69,14 @@ export default class Model {
   completeTask(list, taskId) {
     let lists = this.getLists();
     let idx = list.tasks.findIndex(task => task.id === taskId);
-    // list.tasks[idx].complete = !list.tasks[idx].complete;
-    // console.log(list.id);
     lists[list.id].tasks[idx].complete = !lists[list.id].tasks[idx].complete;
+    this.saveLocalStorage({ lists, currentList: lists[list.id] });
+  }
+
+  saveEditTask(list, taskId, newTaskDesc) {
+    let lists = this.getLists();
+    let idx = list.tasks.findIndex(task => task.id === taskId);
+    lists[list.id].tasks[idx].description = newTaskDesc;
     this.saveLocalStorage({ lists, currentList: lists[list.id] });
   }
 }
@@ -85,7 +90,6 @@ class Task {
         .substr(2, 9);
     this.description = description;
     this.complete = false;
-    this.editing = false;
   }
 }
 
@@ -99,7 +103,6 @@ class List {
     this.name = name;
     this.tasks = [];
     this.complete = false;
-    this.editing = false;
   }
 
   getTask(taskId) {
