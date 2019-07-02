@@ -3,15 +3,12 @@
 export default class Model {
   constructor(name) {
     const localStorage = window.localStorage;
-    this.fetchLocalStorage = () => {
-      return JSON.parse(localStorage.getItem(name)) || {};
-    };
+    this.fetchLocalStorage = () => JSON.parse(localStorage.getItem(name)) || {};
 
-    this.saveLocalStorage = lists => {
+    this.saveLocalStorage = lists =>
       localStorage.setItem(name, JSON.stringify(lists));
-    };
 
-    this.lists = [new List('one'), new List('two'), new List('three')];
+    this.lists = () => this.getLists.bind(this);
   }
 
   getLists() {
@@ -36,9 +33,9 @@ export default class Model {
     this.saveLocalStorage(lists);
   }
 
-  deleteList(list) {
+  deleteList(listId) {
     let lists = this.fetchLocalStorage();
-    delete lists[list];
+    delete lists[listId];
     this.saveLocalStorage(lists);
   }
 }

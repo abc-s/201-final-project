@@ -9,3 +9,10 @@ const view = new View();
 const controller = new Controller(model, view);
 
 controller.start();
+
+
+/*
+const setView = () => controller.setView(document.location.hash);
+$on(window, 'load', setView);
+$on(window, 'hashchange', setView);
+*/

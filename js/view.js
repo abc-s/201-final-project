@@ -18,7 +18,7 @@ export default class View {
         `
 <li id=${id}>
 <label>${listObj.name}</label>
-<button>delete</button>
+<button class="delete-list-button">delete</button>
 </li>
       `
       );
@@ -32,16 +32,20 @@ export default class View {
     });
   }
 
+  deleteList(handler) {
+    this.listsUlEl.addEventListener('click', e => {
+      const delButtons = this.listsUlEl.querySelectorAll('.delete-list-button');
+      for (let i = 0; i < delButtons.length; i++) {
+        if (delButtons[i] === e.target) return handler(e.target.parentNode.id);
+      }
+    });
+  }
+
   clearListsAddForm() {
     this.newListInputEl.value = '';
   }
 
   renderLists(lists) {
     this.listsUlEl.innerHTML = this.createListsHTML(lists);
-    // this.addListEventListener(this.listsAddForm, 'submit', (e) => {
-    //   e.preventDefault();
-    //   console.log('submitted', this.newListInputEl.value);
-    //   return this.newListInputEl.value;
-    // });
   }
 }
