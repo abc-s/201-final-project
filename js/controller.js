@@ -5,15 +5,17 @@ export default class Controller {
     this.model = model;
     this.view = view;
     this.lists = this.model.lists();
+    this.currentList = this.model.currentList();
 
     view.addList(this.addList.bind(this));
     view.deleteList(this.deleteList.bind(this));
+    view.selectList(this.selectList.bind(this));
+    view.addTask(this.addTask.bind(this));
   }
 
   addList(listName) {
     // update the model (and localStorage)
     this.model.addList(listName);
-
     // update the view
     this.view.clearListsAddForm();
     this.view.renderLists(this.lists());
@@ -24,8 +26,19 @@ export default class Controller {
     this.view.renderLists(this.lists());
   }
 
+  selectList(listId) {
+    this.model.setCurrentList(listId);
+    this.view.renderTasks(this.currentList());
+  }
+
+  addTask(taskDesc) {
+    this.model.addTask(this.currentList(), taskDesc);
+    this.view.clearAddTaskForm();
+    this.view.renderTasks(this.currentList());
+  }
+
   start() {
-    console.log(this.lists);
     this.view.renderLists(this.lists());
+    this.view.renderTasks(this.currentList());
   }
 }
