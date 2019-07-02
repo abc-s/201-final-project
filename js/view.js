@@ -68,7 +68,14 @@ export default class View {
     this.listsUlEl.addEventListener('click', e => {
       const listLis = this.listsUlEl.querySelectorAll('.list-li');
       for (let i = 0; i < listLis.length; i++) {
-        if (listLis[i] === e.target) return handler(e.target.id);
+        // orlistsLi[i] e.target.
+        // console.log(e.target.parentNode);
+        if (listLis[i] === e.target) {
+          return handler(e.target.id);
+        }
+        if (listLis[i] === e.target.parentNode) {
+          return handler(e.target.parentNode.id);
+        }
       }
     });
   }
@@ -99,15 +106,6 @@ export default class View {
     };
     checkboxChangeOnTasks(this.activeListUl);
     checkboxChangeOnTasks(this.completeListUl);
-    /*
-    this.activeListUl.addEventListener('change', e => {
-      const taskLis = this.activeListUl.querySelectorAll('.task-li');
-      for (let i = 0; i < taskLis.length; i++) {
-        if (taskLis[i] === e.target.parentNode)
-          return handler(e.target.parentNode.id);
-      }
-    });
-    */
   }
 
   saveEditTask(handler) {
@@ -124,8 +122,9 @@ export default class View {
     this.addTaskInputEl.value = '';
   }
 
-  renderLists(lists) {
+  renderLists(lists, currentList) {
     this.listsUlEl.innerHTML = this.createListsHTML(lists);
+    if (currentList) this.currentListName.innerHTML = currentList.name;
   }
   renderTasks(currentList) {
     this.currentListName.innerHTML = currentList.name;
