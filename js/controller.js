@@ -11,6 +11,7 @@ export default class Controller {
     view.deleteList(this.deleteList.bind(this));
     view.selectList(this.selectList.bind(this));
     view.addTask(this.addTask.bind(this));
+    view.completeTask(this.completeTask.bind(this));
   }
 
   addList(listName) {
@@ -34,6 +35,11 @@ export default class Controller {
   addTask(taskDesc) {
     this.model.addTask(this.currentList(), taskDesc);
     this.view.clearAddTaskForm();
+    this.view.renderTasks(this.currentList());
+  }
+
+  completeTask(taskId) {
+    this.model.completeTask(this.currentList(), taskId);
     this.view.renderTasks(this.currentList());
   }
 

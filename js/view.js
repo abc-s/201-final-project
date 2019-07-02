@@ -11,6 +11,7 @@ export default class View {
 
     this.currentListName = document.querySelector('#list-name');
     this.activeListUl = document.querySelector('#active-list');
+    // this.completeListUl = document.querySelector('#complete-list');
     this.addTaskForm = document.querySelector('#add-task-form');
     this.addTaskInputEl = document.querySelector('#new-task-input');
   }
@@ -35,7 +36,7 @@ export default class View {
       return (
         html +
         `
-<li id=${id} class="task-li">
+<li id=${id} class="task-li ${complete ? ''}">
   <input type="checkbox" ${complete ? 'checked' : ''}/>
   <input type="text" value="${description}" readonly />
   <button class="delete-task-button">delete</button>
@@ -78,6 +79,16 @@ export default class View {
     this.addTaskForm.addEventListener('submit', e => {
       e.preventDefault();
       handler(this.addTaskInputEl.value);
+    });
+  }
+
+  completeTask(handler) {
+    this.activeListUl.addEventListener('change', e => {
+      const taskLis = this.activeListUl.querySelectorAll('.task-li');
+      for (let i = 0; i < taskLis.length; i++) {
+        if (taskLis[i] === e.target.parentNode)
+          return handler(e.target.parentNode.id);
+      }
     });
   }
 
