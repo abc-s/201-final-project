@@ -1,22 +1,78 @@
-/* ----- Header ----- */
+/* ---------- Header ---------- */
 header {
-  background: #fff;
+  background: #a7aeb2;
   padding: 0.5em 0;
 }
-header > nav > ul > li a {
-  color: inherit;
+header h1 > a {
+  text-decoration: none;
+}
+header > nav > ul > li a,
+header > nav > ul > li label {
+  color: red;
   text-decoration: none;
 }
 header > nav > ul > li a:visited {
-  color: inherit;
+  color: red;
 }
 
-/* ----- Current list section ----- */
-main > section {
-  background: lavenderblush;
+/* ---------- Side menu toggling ---------- */
+main {
+  display: flex;
+  flex-flow: row nowrap;
 }
+
+main > aside {
+  background: lavenderblush;
+  transition: width 250ms ease-in-out;
+  width: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+}
+
+main > section {
+  width: 100%;
+}
+
+input#openSidebarMenu {
+  display: none;
+}
+input[type='checkbox']:checked ~ aside {
+  width: 40vw;
+}
+.sidebarIconToggle {
+  cursor: pointer;
+}
+
+/* ---------- Current list section ---------- */
+main > section {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 1em;
+  /* padding: 0 20%; */
+}
+
 main > section > h2 {
-  text-align: center;
+  font-size: 220%;
+}
+main > section > form {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0.5em 0;
+  /* width: 100%; */
+}
+main > section > form > input[type='text'] {
+  /* reset */
+  
+  /* width: 100%; */
+}
+
+main > section > form > input[type='submit'] {
+  /* styles */
+  color: red;
+  font-size: 200%;
 }
 
 li.completed > input {
@@ -25,7 +81,28 @@ li.completed > input {
 }
 
 /* ----- Aside ----- */
-main > aside {
+
+/* main > section {
+  background: lavenderblush;
+}
+main > section > h2 {
+  text-align: center;
+} */
+
+/* 
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+} */
+/* main > aside {
   display: flex;
   flex-flow: column nowrap;
   padding: 0.4em;
@@ -40,7 +117,7 @@ main > aside > #lists-ul > li {
 }
 main > aside > #lists-ul > li:hover {
   box-shadow: 0px 0px 32px 8px rgba(0,0,0,0.25);
-}
+} */
 
 /* #lists-ul {
   list-style: disc inside;
@@ -48,6 +125,8 @@ main > aside > #lists-ul > li:hover {
 
 /* ----- Footer ----- */
 footer {
-  padding: 2em 0 1em 0;
+  background: #a7aeb2;
+  font-size: 80%;
+  padding: 1.5em 0 1em 0;
   text-align: center;
 }

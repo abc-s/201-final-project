@@ -3,6 +3,10 @@
 <html>
   <head>
     <title>Chekov</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:500|Open+Sans"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/core.css" />
     <link rel="stylesheet" href="css/flex.css" />
@@ -16,26 +20,17 @@
           <li>
             <h1><a id="" href="index.html" title="">Chekov</a></h1>
           </li>
-          <li><a href="#">About</a></li>
+          <li>
+            <label for="openSidebarMenu" class="sidebarIconToggle"
+              >Show All Lists
+            </label>
+          </li>
           <li><a href="#">Source Code</a></li>
         </ul>
       </nav>
     </header>
-    <main>
-      <section id="current-list-section">
-        <h2 id="list-name"></h2>
-        <form id="add-task-form" autocomplete="off">
-          <input
-            id="new-task-input"
-            placeholder="Task name"
-            type="text"
-            required
-          />
-          <input type="submit" value="add task" />
-        </form>
-        <ul id="active-list"></ul>
-        <ul id="complete-list"></ul>
-      </section>
+    <main id="main">
+      <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
       <aside>
         <h2>Lists</h2>
         <form id="add-list-form" autocomplete="off">
@@ -50,6 +45,20 @@
         <ul id="lists-ul"></ul>
         <button id="clear-lists-button">clear all lists</button>
       </aside>
+      <section id="current-list-section">
+        <h2 id="list-name"></h2>
+        <form id="add-task-form" autocomplete="off">
+          <input type="submit" value="&#43" />
+          <input
+            id="new-task-input"
+            placeholder="Task name"
+            type="text"
+            required
+          />
+        </form>
+        <ul id="active-list"></ul>
+        <ul id="complete-list"></ul>
+      </section>
     </main>
     <footer>
       <p>&copy; 2019 Billy Bunn</p>

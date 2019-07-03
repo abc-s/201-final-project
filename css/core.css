@@ -8,7 +8,9 @@ body {
 }
 
 body {
-  font-family: sans-serif;
+  background: #eff1f2;
+  color: #24292d;
+  font-family: 'Open Sans', Helvetica, sans-serif;
   font-size: 1.3em;
 }
 
@@ -21,4 +23,3 @@ h2 {
 h3 {
   font-size: 110%;
 }
-
