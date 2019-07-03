@@ -81,6 +81,13 @@ export default class Model {
     lists[list.id].tasks[idx].description = newTaskDesc;
     this.saveLocalStorage({ lists, currentList: lists[list.id] });
   }
+
+  deleteTask(list, taskId) {
+    let lists = this.getLists();
+    let idx = list.tasks.findIndex(task => task.id === taskId);
+    lists[list.id].tasks.splice(idx, 1);
+    this.saveLocalStorage({ lists, currentList: lists[list.id]});
+  }
 }
 
 class Task {

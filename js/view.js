@@ -68,8 +68,6 @@ export default class View {
     this.listsUlEl.addEventListener('click', e => {
       const listLis = this.listsUlEl.querySelectorAll('.list-li');
       for (let i = 0; i < listLis.length; i++) {
-        // orlistsLi[i] e.target.
-        // console.log(e.target.parentNode);
         if (listLis[i] === e.target) {
           return handler(e.target.id);
         }
@@ -94,14 +92,7 @@ export default class View {
   completeTask(handler) {
     const checkboxChangeOnTasks = element => {
       element.addEventListener('change', e => {
-        if (e.target.type === 'checkbox') {
-          const liEls = element.querySelectorAll('.task-li');
-          for (let i = 0; i < liEls.length; i++) {
-            if (liEls[i] === e.target.parentNode) {
-              return handler(e.target.parentNode.id);
-            }
-          }
-        }
+        if (e.target.type === 'checkbox') handler(e.target.parentNode.id);
       });
     };
     checkboxChangeOnTasks(this.activeListUl);
@@ -115,6 +106,15 @@ export default class View {
         if (taskInputs[i] === e.target)
           handler(e.target.parentNode.id, e.target.value);
       }
+    });
+  }
+
+  deleteTask(handler) {
+    this.activeListUl.addEventListener('click', e => {
+      if (e.target.type === 'submit') handler(e.target.parentNode.id);
+    });
+    this.completeListUl.addEventListener('click', e => {
+      if (e.target.type === 'submit') handler(e.target.parentNode.id);
     });
   }
 
