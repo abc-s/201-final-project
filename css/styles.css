@@ -4,6 +4,7 @@ header {
   padding: 0.5em 0;
 }
 header h1 > a {
+  font-size: 110%;
   text-decoration: none;
 }
 header > nav > ul > li a,
@@ -15,141 +16,21 @@ header > nav > ul > li a:visited {
   color: red;
 }
 
-/* ---------- Side menu toggling ---------- */
 main {
   display: flex;
   flex-flow: row nowrap;
 }
 
-main > aside {
-  background: lavenderblush;
-  transition: width 250ms ease-in-out;
-  width: 0;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
+@media screen and (max-width: 600px) {
+  main {
+    flex-flow: column nowrap;
+  }
 }
-
 main > section {
   width: 100%;
 }
 
-input#openSidebarMenu {
-  display: none;
-}
-input[type='checkbox']:checked ~ aside {
-  width: 40vw;
-}
-.sidebarIconToggle {
-  cursor: pointer;
-}
-
-/* ---------- Current list section ---------- */
-main > section {
-  align-items: center;
-  display: flex;
-  flex-flow: column nowrap;
-  margin-top: 1em;
-}
-main > section > * {
-  max-width: 50%;
-  text-align: center;
-  width: 100%;
-}
-
-main > section > h2 {
-  font-size: 220%;
-}
-/* Add task form */
-main > section > form {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  margin: 0.5em 0;
-  width: 100%;
-}
-main > section > form > input[type='text'] {
-  background: #fff;
-  margin-left: 0.5em;
-  width: 100%;
-}
-main > section > form > input[type='submit'] {
-  color: red;
-  font-size: 200%;
-}
-
-/* Task lists */
-
-/* Custom checkboxes ---------------------------- */
-.container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #fff;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #a7aeb2;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #fff;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid red;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-/* ----- Aside ----- */
+/* Lists menu -------------------------------------------------------- */
 
 /* main > section {
   background: lavenderblush;
@@ -191,6 +72,268 @@ main > aside > #lists-ul > li:hover {
 /* #lists-ul {
   list-style: disc inside;
 } */
+
+/* ---------- Side menu toggling ---------- */
+
+main > aside {
+  background: #fff;
+  transition: width 250ms ease-in-out, padding 250ms ease-in-out;
+  width: 0;
+  /* z-index: 1; */
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+}
+
+input#open-aside {
+  display: none;
+}
+input[type='checkbox']:checked ~ aside {
+  padding: 0 0.4em;
+  width: 50vw;
+}
+@media screen and (max-width: 600px) {
+  input[type='checkbox']:checked ~ aside {
+    background: transparent;
+    padding: 0 0.4em;
+    /* width: 100vw; */
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+.open-aside-label {
+  cursor: pointer;
+}
+
+main > aside {
+  display: flex;
+  flex-flow: column nowrap;
+  /* padding: 0 .5em; */
+  font-size: 90%;
+  /* line-height: 1; */
+}
+/* add list form ------------------------ */
+main > aside > form {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 2em;
+  justify-content: flex-start;
+  margin: 0.5em 0;
+  width: 100%;
+}
+main > aside > form > input[type='text'] {
+  background: #ffd0d0;
+  color: red;
+  flex: 1;
+  font-size: 100%;
+  margin-left: 0.3em;
+  /* margin-right: 0.3em; */
+  width: 100%;
+  padding-left: 0.3em;
+}
+main > aside > form > input[type='text']::placeholder {
+  color: red;
+}
+main > aside > form > input[type='submit'] {
+  background: #ffd0d0;
+  color: red;
+  height: 2em;
+  min-width: 2em;
+}
+aside > ul {
+  display: flex;
+  flex-flow: column nowrap;
+}
+aside > ul > li {
+  margin-bottom: 0.3em;
+
+  height: 1.5em;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+aside > ul > li > label {
+  background: lightgrey;
+  flex: 1;
+  height: 1.5em;
+  line-height: 1.5em;
+  padding: 0 0.3em;
+}
+
+aside > ul > li > button {
+  background: #ffd0d0;
+  color: red;
+  height: 1.5em;
+  margin-left: 0.2em;
+  width: 1.5em;
+}
+
+/* ---------- Current list section ---------- */
+main > section {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 1em;
+}
+main > section > * {
+  /* max-width: 50%; */
+  /* text-align: center; */
+  /* width: 100%; */
+}
+
+main > section > h2 {
+  font-size: 220%;
+}
+/* Add task form */
+main > section > form {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 2em;
+  justify-content: space-between;
+  margin: 0.5em 0;
+  /* width: 100%; */
+  max-width: 70vw;
+  width: 80%;
+}
+main > section > form > input[type='text'] {
+  background: #ffd0d0;
+  color: red;
+  flex: 1;
+  font-size: 100%;
+  margin-left: 0.7em;
+  padding-left: 1em;
+}
+main > section > form > input[type='text']::placeholder {
+  color: red;
+}
+main > section > form > input[type='submit'] {
+  background: #fff;
+  color: red;
+  height: 2em;
+  min-width: 2em;
+}
+
+/* Task lists --------------------------------------------------------*/
+section > ul {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 70vw;
+  width: 80%;
+}
+section > ul > li {
+  margin-bottom: 0.3em;
+  height: 2em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+section > ul > li > label {
+}
+section > ul > li > input {
+  background: #fff;
+  flex: 1;
+  font-size: 100%;
+  padding-left: 1em;
+  margin-left: 0.7em;
+  margin-right: 0.3em;
+}
+section > ul > li > input:focus {
+  background: #ffd0d0;
+}
+section > ul > li > button {
+  background: red;
+  color: #fff;
+  height: 2em;
+  margin-right: -2.3em;
+  opacity: 0;
+  width: 2em;
+}
+section > ul > li:hover button {
+  opacity: 1;
+}
+
+#complete-list > li > input {
+  background: #e0e4e7;
+  color: #a7aeb2;
+  text-decoration: line-through red;
+}
+
+/* Custom checkbox ------------------------------------------------------ */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 2em;
+
+  /* margin-bottom: 12px; */
+  cursor: pointer;
+  /* font-size: 22px; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.custom-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2em;
+  width: 2em;
+
+  background-color: #fff;
+}
+
+/* On mouse-over, add a background color */
+.checkbox-container:hover input ~ .custom-checkbox {
+  background-color: #ffd0d0;
+}
+
+/* When the checkbox is checked, add a different background */
+.checkbox-container input:checked ~ .custom-checkbox {
+  /* background-color: #ffd0d0; */
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.custom-checkbox:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .custom-checkbox:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .custom-checkbox:after {
+  left: 0.7em;
+  top: 0.3em;
+  width: 0.5em;
+  height: 1em;
+  /*
+  left: .7em;
+  top: -.7em;
+  width: 1em;
+  height: 2em;
+  */
+  border: solid red;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 
 /* ----- Footer ----- */
 footer {

@@ -24,7 +24,7 @@ export default class View {
         `
 <li id=${id} class="list-li">
 <label>${listObj.name}</label>
-<button class="delete-list-button">delete</button>
+<button class="delete-list-button">&#215;</button>
 </li>
       `
       );
@@ -40,10 +40,10 @@ export default class View {
         `
         
 <li id=${id} class="task-li ${complete ? 'completed' : ''}">
-        <label class="container">
-          <input type="checkbox" ${complete ? 'checked' : ''}>
-          <span class="checkmark"></span>
-        </label>
+  <label class="checkbox-container">
+    <input type="checkbox" ${complete ? 'checked' : ''}>
+    <span class="custom-checkbox"></span>
+  </label>
   <input type="text" value="${description}" class="task-input" ${
           !editing ? 'readonly' : ''
         } ${!editing ? 'disabled' : ''}/>

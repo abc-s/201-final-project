@@ -19,10 +19,10 @@
       <nav>
         <ul>
           <li>
-            <h1><a id="" href="index.html" title="">Chekov</a></h1>
+            <h1><a id="" href="index.html" title="">chekov</a></h1>
           </li>
           <li>
-            <label for="openSidebarMenu" class="sidebarIconToggle"
+            <label for="open-aside" class="open-aside-label"
               >Show All Lists
             </label>
           </li>
@@ -31,20 +31,20 @@
       </nav>
     </header>
     <main id="main">
-      <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
+      <input type="checkbox" class="openSidebarMenu" id="open-aside" />
       <aside>
-        <h2>Lists</h2>
+        <!-- <h2>Lists</h2> -->
         <form id="add-list-form" autocomplete="off">
+          <input type="submit" value="&#43" />
           <input
             id="new-list-input"
             placeholder="New list name"
             type="text"
             required
           />
-          <input type="submit" value="add list" />
         </form>
         <ul id="lists-ul"></ul>
-        <button id="clear-lists-button">clear all lists</button>
+        <!-- <button id="clear-lists-button">clear all lists</button> -->
       </aside>
       <section id="current-list-section">
         <h2 id="list-name"></h2>
@@ -58,10 +58,6 @@
           />
         </form>
         <ul id="active-list"></ul>
-        <!-- <label class="container">
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label> -->
         <ul id="complete-list"></ul>
       </section>
     </main>
