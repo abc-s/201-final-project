@@ -33,15 +33,21 @@ export default class View {
   createTasksHTML(tasks) {
     return tasks.reduce((html, task) => {
       let { id, description, complete, editing } = task;
+      //   <input type="checkbox" ${complete ? 'checked' : ''}/>
+
       return (
         html +
         `
+        
 <li id=${id} class="task-li ${complete ? 'completed' : ''}">
-  <input type="checkbox" ${complete ? 'checked' : ''}/>
+        <label class="container">
+          <input type="checkbox" ${complete ? 'checked' : ''}>
+          <span class="checkmark"></span>
+        </label>
   <input type="text" value="${description}" class="task-input" ${
           !editing ? 'readonly' : ''
         } ${!editing ? 'disabled' : ''}/>
-  <button class="delete-task-button">delete</button>
+  <button class="delete-task-button">&#215;</button>
 </li>
       `
       );
@@ -92,7 +98,8 @@ export default class View {
   completeTask(handler) {
     const checkboxChangeOnTasks = element => {
       element.addEventListener('change', e => {
-        if (e.target.type === 'checkbox') handler(e.target.parentNode.id);
+        if (e.target.type === 'checkbox')
+          handler(e.target.parentNode.parentNode.id);
       });
     };
     checkboxChangeOnTasks(this.activeListUl);
