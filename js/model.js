@@ -1,6 +1,7 @@
 'use strict';
 
-export default class Model {
+// export default 
+class Model {
   constructor(name) {
     const localStorage = window.localStorage;
     this.fetchLocalStorage = () => JSON.parse(localStorage.getItem(name)) || {};
@@ -28,7 +29,7 @@ export default class Model {
   getCurrentList() {
     return (
       this.fetchLocalStorage().currentList || {
-        name: 'Select or create a list',
+        name: 'select or add a list',
         tasks: [],
         id: 0
       }
