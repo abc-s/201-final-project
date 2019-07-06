@@ -1,6 +1,7 @@
 'use strict';
 
-export default class Controller {
+// export default 
+class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
