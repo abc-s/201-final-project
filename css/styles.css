@@ -234,8 +234,8 @@ section > ul > li > input:focus {
   background: #ffd0d0;
 }
 section > ul > li > button {
-  background: red;
-  color: #fff;
+  background: #ffd0d0;
+  color: red;
   height: 2em;
   margin-right: -2.3em;
   opacity: 0;
