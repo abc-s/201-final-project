@@ -12,7 +12,7 @@ The application is written using only JavaScript, HTML, and CSS—no outside lib
 
 This repository is a fork of a final course project at a coding bootcamp, [Code Fellows](https://www.codefellows.org/)’ _Code 201_ course. The original project was created by 4 junior developers (with only 3 weeks of programming experience) in four days.
 
-This fork is a re-working of the original project by [Billy Bunn](https://github.com/BillyBunn) approximately four months later.
+This fork is a re-working of the original project by [Billy Bunn](https://github.com/BillyBunn), started and completed approximately four months later.
 
 #### Original Team Credits
 
