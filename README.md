@@ -1,21 +1,22 @@
-# Cheko✔ - 201-final-project
+# Chekov
 
-This repo is for our team's Code 201 final project, Cheko✔ (Chekov). 
+A to-do list app written in pure, vanilla JavaScript.
 
-## Members of Team "ABC'S" 
-* Shukri Abdi | https://github.com/sabdi21
-* Billy Bunn | https://github.com/BillyBunn
-* Andrew Curtis | https://github.com/amjcurtis
-* Cory Henderson | https://github.com/cory0s
+Chekov allows users to create to-do lists and add, edit, and delete individual tasks on each list. Data is persisted across browser sessions using local storage.
 
-## Project Description
+The application is written using only JavaScript, HTML, and CSS—no outside libraries, frameworks, or languages are used.
 
-Chekov is a web app that allows users to create a to-do list and add, edit, and delete individual tasks on their list. It also persists the user's to-do list across browser sessions using the browser's local storage. The app was built with HTML, CSS, and vanilla JavaScript following responsive design principles. It is deployed on GitHub Pages at https://abc-s.github.io/201-final-project.
+---
 
-## Versions in Our Development Cycle
+### Original Project
 
-* v.1.0.1 - Monday 1/28
-* v.1.0.2 - Tuesday 1/29
-* v.1.0.3 - Wednesday 1/30
-* v.1.0.4 - Thursday 1/31
-* v.1.1.0 - Friday 2/1
+This repository is a fork of a final course project at a coding bootcamp, [Code Fellows](https://www.codefellows.org/)’ _Code 201_ course. The original project was created by 4 junior developers (with only 3 weeks of programming experience) in four days.
+
+This fork is a re-working of the original project by [Billy Bunn](https://github.com/BillyBunn) approximately four months later.
+
+#### Original Team Credits
+
+- [Shukri Abdi](https://github.com/sabdi21)
+- [Billy Bunn](https://github.com/BillyBunn)
+- [Andrew Curtis](https://github.com/amjcurtis)
+- [Cory Henderson](https://github.com/cory0s)

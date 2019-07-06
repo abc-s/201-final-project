@@ -1,0 +1,39 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header > nav > ul {
+  display: flex;
+  flex-flow: column nowrap;
+}
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+header > nav > ul {
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+header > nav > ul > li:first-child {
+  order: 2;
+}
+header > nav > ul > li:last-child {
+  order: 3;
+}
+
+main {
+  flex-direction: row;
+  flex: 1;
+}
+/* 
+main > section {
+  flex: 2;
+}
+
+main > aside {
+  flex: 1;
+} */
