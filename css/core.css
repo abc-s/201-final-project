@@ -23,3 +23,16 @@ h2 {
 h3 {
   font-size: 110%;
 }
+
+input[type=text], textarea {
+  -webkit-transition: box-shadow 0.30s ease-in-out;
+  -moz-transition: box-shadow 0.30s ease-in-out;
+  -ms-transition: box-shadow 0.30s ease-in-out;
+  -o-transition: box-shadow 0.30s ease-in-out;
+  transition: box-shadow 0.30s ease-in-out;
+  outline: none;
+}
+ 
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px red;
+}

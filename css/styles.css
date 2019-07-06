@@ -4,6 +4,7 @@ header {
   padding: 0.5em 0;
 }
 header h1 > a {
+  font-weight: bold;
   font-size: 110%;
   text-decoration: none;
 }
@@ -21,68 +22,22 @@ main {
   flex-flow: row nowrap;
 }
 
-@media screen and (max-width: 600px) {
-  main {
-    flex-flow: column nowrap;
-  }
-}
 main > section {
+  overflow-y: scroll;
   width: 100%;
 }
 
-/* Lists menu -------------------------------------------------------- */
-
-/* main > section {
-  background: lavenderblush;
-}
-main > section > h2 {
-  text-align: center;
-} */
-
-/* 
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-} */
-/* main > aside {
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 0.4em;
-}
-main > aside > h2 {
-  text-align: center;
-}
-main > aside > #lists-ul > li {
-  background: lightblue;
-  margin: 0.3em 0;
-  padding: 0.4em 0.6em;
-}
-main > aside > #lists-ul > li:hover {
-  box-shadow: 0px 0px 32px 8px rgba(0,0,0,0.25);
-} */
-
-/* #lists-ul {
-  list-style: disc inside;
-} */
+/* Lists menu ------------------------------------ */
 
 /* ---------- Side menu toggling ---------- */
 
 main > aside {
   background: #fff;
-  transition: width 250ms ease-in-out, padding 250ms ease-in-out;
-  width: 0;
-  /* z-index: 1; */
-  top: 0;
   left: 0;
   overflow-x: hidden;
+  transition: width 250ms ease-in-out, padding 250ms ease-in-out;
+  top: 0;
+  width: 0;
 }
 
 input#open-aside {
@@ -93,14 +48,52 @@ input[type='checkbox']:checked ~ aside {
   width: 50vw;
 }
 @media screen and (max-width: 600px) {
+  header {
+    padding-bottom: 0;
+  }
+  header > nav > ul {
+    align-items: center;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+  header > nav > ul > li {
+    padding: 0.3em 0;
+    text-align: center;
+    width: 100%;
+  }
+  header > nav > ul > li *,
+  nav a {
+    width: 100%;
+  }
+  header > nav > ul > li:first-child {
+    order: 1;
+  }
+  header > nav > ul > li:nth-child(2) {
+    background: #ffd0d0;
+    order: 3;
+  }
+  header > nav > ul > li:last-child {
+    background: #e0e4e7;
+    order: 2;
+    /* display: none; */
+  }
+  main {
+    flex-flow: column nowrap;
+  }
+  main > aside {
+    height: 0;
+    transition: none;
+    transition: height 250ms;
+  }
   input[type='checkbox']:checked ~ aside {
     background: transparent;
-    padding: 0 0.4em;
-    /* width: 100vw; */
+    height: auto;
     margin: 0 auto;
+    padding: 0 0.4em;
     width: 80%;
   }
 }
+
 .open-aside-label {
   cursor: pointer;
 }
@@ -108,9 +101,7 @@ input[type='checkbox']:checked ~ aside {
 main > aside {
   display: flex;
   flex-flow: column nowrap;
-  /* padding: 0 .5em; */
   font-size: 90%;
-  /* line-height: 1; */
 }
 /* add list form ------------------------ */
 main > aside > form {
@@ -127,9 +118,9 @@ main > aside > form > input[type='text'] {
   flex: 1;
   font-size: 100%;
   margin-left: 0.3em;
-  /* margin-right: 0.3em; */
-  width: 100%;
+  margin-right: 1.7em;
   padding-left: 0.3em;
+  width: 100%;
 }
 main > aside > form > input[type='text']::placeholder {
   color: red;
@@ -153,6 +144,12 @@ aside > ul > li {
   flex-flow: row nowrap;
   justify-content: space-between;
 }
+aside > ul > li:hover label {
+  background: #e0e4e7;
+}
+aside > ul > li:hover button {
+  opacity: 1;
+}
 aside > ul > li > label {
   background: lightgrey;
   flex: 1;
@@ -167,6 +164,8 @@ aside > ul > li > button {
   height: 1.5em;
   margin-left: 0.2em;
   width: 1.5em;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 /* ---------- Current list section ---------- */
@@ -176,12 +175,6 @@ main > section {
   flex-flow: column nowrap;
   margin-top: 1em;
 }
-main > section > * {
-  /* max-width: 50%; */
-  /* text-align: center; */
-  /* width: 100%; */
-}
-
 main > section > h2 {
   font-size: 220%;
 }
@@ -214,7 +207,7 @@ main > section > form > input[type='submit'] {
   min-width: 2em;
 }
 
-/* Task lists --------------------------------------------------------*/
+/* Task lists ------------------------------------ */
 section > ul {
   display: flex;
   flex-flow: column nowrap;
@@ -228,8 +221,6 @@ section > ul > li {
   flex-flow: row nowrap;
   justify-content: space-between;
 }
-section > ul > li > label {
-}
 section > ul > li > input {
   background: #fff;
   flex: 1;
@@ -237,6 +228,7 @@ section > ul > li > input {
   padding-left: 1em;
   margin-left: 0.7em;
   margin-right: 0.3em;
+  transition: background 0.3s ease-in-out;
 }
 section > ul > li > input:focus {
   background: #ffd0d0;
@@ -248,30 +240,27 @@ section > ul > li > button {
   margin-right: -2.3em;
   opacity: 0;
   width: 2em;
+  transition: opacity 0.3s ease-in-out;
 }
 section > ul > li:hover button {
   opacity: 1;
 }
-
 #complete-list > li > input {
   background: #e0e4e7;
   color: #a7aeb2;
   text-decoration: line-through red;
 }
 
-/* Custom checkbox ------------------------------------------------------ */
+/* Custom checkbox ------------------------------- */
 .checkbox-container {
-  display: block;
-  position: relative;
-  padding-left: 2em;
-
-  /* margin-bottom: 12px; */
   cursor: pointer;
-  /* font-size: 22px; */
+  display: block;
+  padding-left: 2em;
+  position: relative;
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
 }
 
 /* Hide the browser's default checkbox */
@@ -285,13 +274,13 @@ section > ul > li:hover button {
 
 /* Create a custom checkbox */
 .custom-checkbox {
+  background-color: #fff;
+  height: 2em;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  height: 2em;
   width: 2em;
-
-  background-color: #fff;
+  transition: background-color 0.3s ease-in-out;
 }
 
 /* On mouse-over, add a background color */
@@ -307,8 +296,8 @@ section > ul > li:hover button {
 /* Create the checkmark/indicator (hidden when not checked) */
 .custom-checkbox:after {
   content: '';
-  position: absolute;
   display: none;
+  position: absolute;
 }
 
 /* Show the checkmark when checked */
@@ -318,26 +307,27 @@ section > ul > li:hover button {
 
 /* Style the checkmark/indicator */
 .checkbox-container .custom-checkbox:after {
+  border: solid red;
+  border-width: 0 3px 3px 0;
+  height: 1em;
   left: 0.7em;
   top: 0.3em;
+  transform: rotate(45deg);
   width: 0.5em;
-  height: 1em;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
   /*
   left: .7em;
   top: -.7em;
   width: 1em;
   height: 2em;
   */
-  border: solid red;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 
 /* ----- Footer ----- */
 footer {
   background: #a7aeb2;
+  color: red;
   font-size: 80%;
   padding: 1.5em 0 1em 0;
   text-align: center;
