@@ -1,6 +1,5 @@
 'use strict';
 
-// export default 
 class Model {
   constructor(name) {
     const localStorage = window.localStorage;
@@ -59,7 +58,6 @@ class Model {
   deleteList(listId) {
     let lists = this.getLists();
     delete lists[listId];
-    console.log(lists[Object.keys(lists)[0]])
     this.saveLocalStorage({ lists, currentList: lists[Object.keys(lists)[0]] });
   }
 

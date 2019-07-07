@@ -1,6 +1,5 @@
 'use strict';
 
-// export default 
 class View {
   constructor() {
     this.listsAddForm = document.querySelector('#add-list-form');
